@@ -12,7 +12,7 @@
 
   "links": [
     {"rel": "cover", "href": "images/cover.jpg", "type": "image/jpeg", "height": 1253, "width": 797}, 
-    {"rel": "self", "href": "http://dauwhe.github.io/epub31-bff/examples/MobyDick/manifest.json", "type": "application/epub+json"}
+    {"rel": "self", "href": "http://hadriengardeur.github.io/webpub-manifest/examples/MobyDick/manifest.json", "type": "application/epub+json"}
   ],
 
   "spine": [

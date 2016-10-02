@@ -30,7 +30,7 @@
   },
 
   "links": [
-    {"rel": "self", "href": "http://dauwhe.github.io/epub31-bff/examples/comics/manifest.json", "type": "application/epub+json"}
+    {"rel": "self", "href": "http://hadriengardeur.github.io/webpub-manifest/examples/comics/manifest.json", "type": "application/epub+json"}
   ],
 
   "spine": [
