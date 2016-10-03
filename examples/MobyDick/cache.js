@@ -22,7 +22,8 @@ self.addEventListener('install', event => {
       'fonts/STIXGeneral.otf',
       'fonts/STIXGeneralBol.otf',
       'fonts/STIXGeneralBolIta.otf',
-      'fonts/STIXGeneralItalic.otf'
+      'fonts/STIXGeneralItalic.otf',
+      'manifest.json'
     ]))
   );
 });
