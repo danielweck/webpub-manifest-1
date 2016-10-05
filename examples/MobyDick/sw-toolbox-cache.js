@@ -32,7 +32,7 @@
     return new Response(AppManifest);
   });
 
-  global.toolbox.router.default = global.toolbox.networkFirst;
+  global.toolbox.router.default = global.toolbox.fastest;
 
   // Ensure that our service worker takes control of the page as soon as possible.
   global.addEventListener('install', event => event.waitUntil(global.skipWaiting()));
