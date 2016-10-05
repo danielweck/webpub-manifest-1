@@ -10,7 +10,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     return;
   }
       
-  navigator.serviceWorker.register('cache.js');
+  navigator.serviceWorker.register('sw-toolbox-cache.js');
   navigator.serviceWorker.ready.then(function() {
     console.log('ready');
   });
