@@ -28,7 +28,7 @@
       'fonts/STIXGeneralItalic.otf'
     ]);
 
-  global.toolbox.router.get('appmanifest.json', global.toolbox.cacheOnly, function(request) {
+  global.toolbox.router.get('appmanifest.json', function(request) {
     return new Response(AppManifest);
   });
 
