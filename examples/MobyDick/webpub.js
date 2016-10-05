@@ -1,4 +1,9 @@
-/* Very early demo, only supports offline viewing with a Service Worker.
+/* 
+Very early demo, that does two things:
+- cache resources necessary for reading the publication offline
+- generates a Web App Manifest
+For now, everything is static, will need to extract the info from the Web Publication manifest in the future.
+
 Check the full list of expected features at: 
 https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 */
