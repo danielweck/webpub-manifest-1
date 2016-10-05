@@ -11,21 +11,21 @@
 
   toolbox.precache([
       'index.html',
-      '/html/toc.html',
-      '/html/copyright.html',
-      '/html/introduction.html',
-      '/html/epigraph.html',
-      '/html/c001.html',
-      '/html/c002.html',
-      '/html/c003.html',
-      '/html/c004.html',
-      '/html/c005.html',
-      '/html/c006.html',
-      '/css/mobydick.css',
-      '/fonts/STIXGeneral.otf',
-      '/fonts/STIXGeneralBol.otf',
-      '/fonts/STIXGeneralBolIta.otf',
-      '/fonts/STIXGeneralItalic.otf'
+      'html/toc.html',
+      'html/copyright.html',
+      'html/introduction.html',
+      'html/epigraph.html',
+      'html/c001.html',
+      'html/c002.html',
+      'html/c003.html',
+      'html/c004.html',
+      'html/c005.html',
+      'html/c006.html',
+      'css/mobydick.css',
+      'fonts/STIXGeneral.otf',
+      'fonts/STIXGeneralBol.otf',
+      'fonts/STIXGeneralBolIta.otf',
+      'fonts/STIXGeneralItalic.otf'
     ]);
 
   // Ensure that our service worker takes control of the page as soon as possible.
