@@ -7,7 +7,8 @@
   // Debug mode
   global.toolbox.options.debug = true;
 
-  global.toolbox.router.default = global.toolbox.networkFirst;
+  global.toolbox.router.default = global.toolbox.fastest;
+  global.toolbox.cache.name(MobyDick)
 
   toolbox.precache([
       'index.html',
@@ -27,6 +28,10 @@
       'fonts/STIXGeneralBolIta.otf',
       'fonts/STIXGeneralItalic.otf'
     ]);
+
+  toolbox.router.get('manifest.app', function(request) {
+    return new Response('{"name": "Moby Dick"}');
+  });
 
   // Ensure that our service worker takes control of the page as soon as possible.
   global.addEventListener('install', event => event.waitUntil(global.skipWaiting()));
