@@ -7,7 +7,7 @@
   // Debug mode
   global.toolbox.options.debug = true;
 
-  global.toolbox.cache.name('MobyDick')
+  toolbox.cache.name('MobyDick')
 
   toolbox.precache([
       'index.html',
