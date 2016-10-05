@@ -7,7 +7,7 @@
   // Debug mode
   global.toolbox.options.debug = true;
 
-  AppManifest = '{"name": "Moby-Dick; or, The Whale", "short_name": "Moby-Dick", "start_url": "index.html", "display": "standalone", "icons": [{"src": "icon-large.png", "sizes": "192x192", "type": "image/png"}]}'
+  var AppManifest = '{"name": "Moby-Dick; or, The Whale", "short_name": "Moby-Dick", "start_url": "index.html", "display": "standalone", "icons": [{"src": "icon-large.png", "sizes": "192x192", "type": "image/png"}]}'
 
   toolbox.precache([
       'index.html',
@@ -29,7 +29,7 @@
     ]);
 
   toolbox.router.get('appmanifest.json', function(request) {
-    return new Response('{"name": "Moby Dick"}');
+    return new Response(AppManifest);
   });
 
   global.toolbox.router.default = global.toolbox.fastest;
