@@ -28,11 +28,11 @@
       'fonts/STIXGeneralItalic.otf'
     ]);
 
-  toolbox.router.get('appmanifest.json', function(request) {
+  global.toolbox.router.get('appmanifest.json', global.toolbox.cacheOnly, function(request) {
     return new Response(AppManifest);
   });
 
-  global.toolbox.router.default = global.toolbox.fastest;
+  global.toolbox.router.default = global.toolbox.networkFirst;
 
   // Ensure that our service worker takes control of the page as soon as possible.
   global.addEventListener('install', event => event.waitUntil(global.skipWaiting()));
