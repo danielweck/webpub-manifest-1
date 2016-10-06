@@ -23,6 +23,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   
   navigator.serviceWorker.ready.then(function() {
     console.log('SW ready');
+    location.reload();
   });
 
   if (navigator.serviceWorker.controller) {

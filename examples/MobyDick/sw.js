@@ -1,6 +1,5 @@
 self.addEventListener('install', event => {
   self.skipWaiting();
-  location.reload();
 });
 
 self.addEventListener('activate', event => {
