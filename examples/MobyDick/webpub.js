@@ -26,20 +26,20 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     console.log('SW ready');
   });
 
-  if (navigator.serviceWorker.controller) {
+  //if (navigator.serviceWorker.controller) {
   	var manifest_url = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href
 
     if (manifest_url) {
-      caches.match(manifest_url).catch(function() {
+      //caches.match(manifest_url).catch(function() {
         console.log('Manifest detected at:'+manifest_url);
         var webpub = getManifest(manifest_url)
         cacheSpine(webpub);
         cacheResources(webpub);
-      });
+      //});
     } else {
       console.log('No Web Publication Manifest detected');
     }
-  };
+  //};
 
   function getManifest(url) {
     return fetch(url).then(function(response) {
