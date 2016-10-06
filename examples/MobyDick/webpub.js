@@ -29,7 +29,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   };
 
   function cacheSpine(url) {
-    fetch(url).then(function(response) {
+    fetch(document.querySelector("link[rel='manifest'][type='application/webpub+json']").href).then(function(response) {
       return response.json();}).then(function(manifest) {
         return manifest.spine.map(function(el) { return el.href});}).then(function(data) {
           console.log(data);
