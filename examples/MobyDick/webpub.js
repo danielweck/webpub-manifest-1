@@ -28,6 +28,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
   if (navigator.serviceWorker.controller) {
   	var manifest_url = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href
+
     if (manifest_url) {
       console.log('Manifest detected at:'+manifest_url);
       var webpub = getManifest(manifest_url)
@@ -51,7 +52,9 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
   function cacheSpine(webpub) {
     webpub.then(function(manifest) {
-      return manifest.spine.map(function(el) { return el.href});}).then(function(data) {return cacheURL(data);})
+      return manifest.spine.map(function(el) { return el.href});}).then(function(data) {
+        data.push(manifest_url);
+        return cacheURL(data);})
   };
 
   function cacheResources(webpub) {
