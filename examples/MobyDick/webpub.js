@@ -17,16 +17,8 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   }
   
   //Basic SW
-  navigator.serviceWorker.register('sw.js').then(function() {
-    console.log('SW installed');
-    var manifest_url = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href
-    if (manifest_url) {
-      console.log('Manifest detected at:'+manifest_url);
-      var webpub = getManifest(manifest_url)
-      cacheSpine(webpub);
-      cacheResources(webpub);
-    }
-  });
+  navigator.serviceWorker.register('sw.js');
+
   //SW based on sw-toolbox that also generates the Web App Manifest
   //navigator.serviceWorker.register('sw-toolobox-cache.js');
   
@@ -34,14 +26,17 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     console.log('SW ready');
   });
 
-  //if (navigator.serviceWorker.controller) {
-  	//var manifest_url = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href
-  	//if (manifest_url) {
-      //console.log('Manifest detected at:'+manifest_url);
-  		//cacheSpine(manifest_url);
-      //cacheResources(manifest_url);
-    //}
-  //};
+  if (navigator.serviceWorker.controller) {
+  	var manifest_url = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href
+    if (manifest_url) {
+      console.log('Manifest detected at:'+manifest_url);
+      var webpub = getManifest(manifest_url)
+      cacheSpine(webpub);
+      cacheResources(webpub);
+    } else {
+      console.log('No Web Publication Manifest detected');
+    }
+  };
 
   function getManifest(url) {
     return fetch(url).then(function(response) {
@@ -61,7 +56,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
   function cacheResources(webpub) {
     webpub.then(function(manifest) {
-      return manifest.spine.map(function(el) { return el.href});}).then(function(data) {return cacheURL(data);})
+      return manifest.resources.map(function(el) { return el.href});}).then(function(data) {return cacheURL(data);})
   };
 
 }());
