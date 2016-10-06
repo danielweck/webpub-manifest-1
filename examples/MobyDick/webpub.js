@@ -48,7 +48,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
       return response.json();})
   };
   
-  function cacheResource(data) {
+  function cacheURL(data) {
     return caches.open("Publication").then(function(cache) {
       return cache.addAll(data.map(function(url) {return new URL(url, location.href);}));
     });
@@ -56,12 +56,12 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
   function cacheSpine(webpub) {
     webpub.then(function(manifest) {
-      return manifest.spine.map(function(el) { return el.href});}).then(function(data) {return cacheResource(data);})
+      return manifest.spine.map(function(el) { return el.href});}).then(function(data) {return cacheURL(data);})
   };
 
-  function cacheSpine(webpub) {
+  function cacheResources(webpub) {
     webpub.then(function(manifest) {
-      return manifest.spine.map(function(el) { return el.href});}).then(function(data) {return cacheResource(data);})
+      return manifest.spine.map(function(el) { return el.href});}).then(function(data) {return cacheURL(data);})
   };
 
 }());
