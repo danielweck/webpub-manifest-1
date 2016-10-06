@@ -17,18 +17,20 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   }
   
   //Basic SW
-  navigator.serviceWorker.register('sw.js');
-  //SW based on sw-toolbox that also generates the Web App Manifest
-  //navigator.serviceWorker.register('sw-toolobox-cache.js');
-  
-  navigator.serviceWorker.ready.then(function() {
-    console.log('SW ready');
+  navigator.serviceWorker.register('sw.js').then(function() {
+    console.log('SW installed');
     var manifest_url = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href
     if (manifest_url) {
       console.log('Manifest detected at:'+manifest_url);
       cacheSpine(manifest_url);
       cacheResources(manifest_url);
     }
+  });
+  //SW based on sw-toolbox that also generates the Web App Manifest
+  //navigator.serviceWorker.register('sw-toolobox-cache.js');
+  
+  navigator.serviceWorker.ready.then(function() {
+    console.log('SW ready');
   });
 
   //if (navigator.serviceWorker.controller) {
