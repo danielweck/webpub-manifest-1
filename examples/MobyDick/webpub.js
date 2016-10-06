@@ -16,7 +16,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     return;
   }
       
-  navigator.serviceWorker.register('sw-toolbox-cache.js');
+  navigator.serviceWorker.register('sw.js');
   navigator.serviceWorker.ready.then(function() {
     console.log('SW ready');
   });
@@ -36,7 +36,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
         return manifest.spine.map(function(el) { return el.href});}).then(function(data) {
           console.log(data);
           return caches.open("Publication").then(function(cache) {
-            return cache.addAll(data.map(function(url) {return new URL(url, "https://hadriengardeur.github.io/webpub-manifest/examples/MobyDick/");}));
+            return cache.addAll(data.map(function(url) {return new URL(url, location.href);}));
           });
         })
   };
