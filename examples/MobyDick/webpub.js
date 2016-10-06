@@ -56,12 +56,12 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
   function cacheSpine(webpub) {
     webpub.then(function(manifest) {
-      return manifest.spine.map(function(el) { return el.href});}).then(cacheResource(data))
+      return manifest.spine.map(function(el) { return el.href});}).then(function(data) {return cacheResource(data);})
   };
 
   function cacheSpine(webpub) {
     webpub.then(function(manifest) {
-      return manifest.spine.map(function(el) { return el.href});}).then(cacheResource(data))
+      return manifest.spine.map(function(el) { return el.href});}).then(function(data) {return cacheResource(data);})
   };
 
 }());
