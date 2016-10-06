@@ -18,18 +18,20 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
       
   navigator.serviceWorker.register('sw-toolbox-cache.js');
   navigator.serviceWorker.ready.then(function() {
-    console.log('ready');
+    console.log('SW ready');
   });
 
   if (navigator.serviceWorker.controller) {
   	var manifest_url = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href
+    console.log('Manifest detected at:'+manifest_url)
   	if (manifest_url) {
+      console.log('Caching spine items')
   		cacheSpine(manifest_url);
     }
   };
 
   function cacheSpine(url) {
-    fetch('manifest.json').then(function(response) {
+    fetch(url).then(function(response) {
       return response.json();}).then(function(manifest) {
         return manifest.spine.map(function(el) { return el.href});}).then(function(data) {
           console.log(data);

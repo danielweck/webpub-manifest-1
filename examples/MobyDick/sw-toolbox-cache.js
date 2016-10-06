@@ -5,7 +5,7 @@
   importScripts('bower_components/sw-toolbox/sw-toolbox.js');
   
   // Debug mode
-  global.toolbox.options.debug = true;
+  //global.toolbox.options.debug = true;
 
   var AppManifest = '{"name": "Moby-Dick; or, The Whale", "short_name": "Moby-Dick", "start_url": "index.html", "display": "standalone", "icons": [{"src": "icon-large.png", "sizes": "192x192", "type": "image/png"}]}'
 
