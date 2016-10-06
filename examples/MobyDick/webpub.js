@@ -29,11 +29,11 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   };
 
   function cacheSpine(url) {
-    fetch('manifest.json').then(function(response) {
+    fetch(url).then(function(response) {
       return response.json();}).then(function(manifest) {
         return manifest.spine.map(function(el) { return el.href});}).then(function(data) {
           console.log(data);
-          return caches.open("Test").then(function(cache) {
+          return caches.open("Publication").then(function(cache) {
             return cache.addAll(data.map(function(url) {return new URL(url, "https://hadriengardeur.github.io/webpub-manifest/examples/MobyDick/");}));
           });
         })
