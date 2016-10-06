@@ -1,8 +1,8 @@
 /* 
 Very early demo, that does two things:
 - cache resources necessary for reading the publication offline
-- generates a Web App Manifest
-For now, everything is static, will need to extract the info from the Web Publication manifest in the future.
+- generates a Web App Manifest (if you activate the sw-toolbox variant)
+This is now done dynamically but too often, will need to figure out a way to trigger this event only once.
 
 Check the full list of expected features at: 
 https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
@@ -44,7 +44,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   };
   
   function cacheURL(data) {
-    return caches.open("Publication").then(function(cache) {
+    return caches.open(manifest_url).then(function(cache) {
       return cache.addAll(data.map(function(url) {return new URL(url, location.href);}));
     });
   };
