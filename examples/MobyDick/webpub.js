@@ -31,16 +31,17 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
     if (manifest_url) {
       
-      caches.open(manifest_url)
-        .then(function(cache) {
-          cache.match(manifest_url).then(function(){
-            console.log("Found cache key")
-          }).catch(function(){console.log("No cache key found")})
+      caches.open(manifest_url).then(function(cache) {
+        cache.match(manifest_url).then(function(){
+          console.log("Found cache key");
+        }).catch(function(){
+          console.log("No cache key found");
+          console.log('Caching manifest at:'+manifest_url);
+          var webpub = getManifest(manifest_url)
+          cacheSpine(webpub);
+          cacheResources(webpub);
+        })
       });
-      console.log('Manifest detected at:'+manifest_url);
-      var webpub = getManifest(manifest_url)
-      cacheSpine(webpub);
-      cacheResources(webpub);
       
     } else {
       console.log('No Web Publication Manifest detected');
