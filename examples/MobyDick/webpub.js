@@ -9,6 +9,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 */
 
 (function() {
+
   var installingMsg = document.querySelector('.installing-msg');
   if (!navigator.serviceWorker) {
     installingMsg.textContent = "Service worker not supported";
@@ -19,4 +20,23 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   navigator.serviceWorker.ready.then(function() {
     console.log('ready');
   });
+
+  if (navigator.serviceWorker.controller) {
+  	var manifest_url = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href
+  	if (manifest_url) {
+  		cacheSpine(manifest_url);
+    }
+  };
+
+  function cacheSpine(url) {
+    fetch('manifest.json').then(function(response) {
+      return response.json();}).then(function(manifest) {
+        return manifest.spine.map(function(el) { return el.href});}).then(function(data) {
+          console.log(data);
+          return caches.open("Test").then(function(cache) {
+            return cache.addAll(data.map(function(url) {return new URL(url, "https://hadriengardeur.github.io/webpub-manifest/examples/MobyDick/");}));
+          });
+        })
+  };
+
 }());
