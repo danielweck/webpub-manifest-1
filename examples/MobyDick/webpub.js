@@ -25,7 +25,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
         cacheSpine(manifest_url);
       }
     }
-  };
+  });
 
   navigator.serviceWorker.ready.then(function() {
     console.log('SW ready');
