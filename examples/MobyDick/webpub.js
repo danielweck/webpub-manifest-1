@@ -22,9 +22,9 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     var manifest_url = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href
     if (manifest_url) {
       console.log('Manifest detected at:'+manifest_url);
-      var json = getManifest(manifest_url)
-      cacheSpine(json);
-      cacheResources(json);
+      var webpub = getManifest(manifest_url)
+      cacheSpine(webpub);
+      cacheResources(webpub);
     }
   });
   //SW based on sw-toolbox that also generates the Web App Manifest
@@ -44,7 +44,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   //};
 
   function getManifest(url) {
-    fetch(url).then(function(response) {
+    return fetch(url).then(function(response) {
       return response.json();})
   };
   
@@ -54,13 +54,13 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     });
   };
 
-  function cacheSpine(json) {
-    json.then(function(manifest) {
+  function cacheSpine(webpub) {
+    webpub.then(function(manifest) {
       return manifest.spine.map(function(el) { return el.href});}).then(cacheResource(data))
   };
 
-  function cacheSpine(json) {
-    json.then(function(manifest) {
+  function cacheSpine(webpub) {
+    webpub.then(function(manifest) {
       return manifest.spine.map(function(el) { return el.href});}).then(cacheResource(data))
   };
 
