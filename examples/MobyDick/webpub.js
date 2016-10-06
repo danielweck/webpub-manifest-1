@@ -45,7 +45,6 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
       return response.json();}).then(function(manifest) {
         return manifest.spine.map(function(el) { return el.href});}).then(function(data) {
           console.log(data);
-          data.push('/');
           data.push(url);
           return caches.open("Publication").then(function(cache) {
             return cache.addAll(data.map(function(url) {return new URL(url, location.href);}));
