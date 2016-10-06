@@ -1,20 +1,5 @@
 self.addEventListener('install', event => {
   self.skipWaiting();
-  event.waitUntil(
-    /*
-    This should be handled dynamically by finding the manifest on the page
-    and then caching all items listed in spine & resources. 
-    This is a temp version where all resources are specified in the SW.*/
-    
-    caches.open('Publication-assets').then(c => c.addAll([
-      'css/mobydick.css',
-      'fonts/STIXGeneral.otf',
-      'fonts/STIXGeneralBol.otf',
-      'fonts/STIXGeneralBolIta.otf',
-      'fonts/STIXGeneralItalic.otf',
-      'manifest.json'
-    ]))
-  );
 });
 
 self.addEventListener('activate', event => {
