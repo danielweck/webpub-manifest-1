@@ -15,8 +15,12 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     installingMsg.textContent = "Service worker not supported";
     return;
   }
-      
+  
+  //Basic SW
   navigator.serviceWorker.register('sw.js');
+  //SW based on sw-toolbox that also generates the Web App Manifest
+  //navigator.serviceWorker.register('sw-toolobox-cache.js');
+  
   navigator.serviceWorker.ready.then(function() {
     console.log('SW ready');
   });
@@ -44,7 +48,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   function cacheResources(url) {
     fetch(url).then(function(response) {
       return response.json();}).then(function(manifest) {
-        return manifest.spine.map(function(el) { return el.href});}).then(function(data) {
+        return manifest.resources.map(function(el) { return el.href});}).then(function(data) {
           console.log(data);
           return caches.open("Publication").then(function(cache) {
             return cache.addAll(data.map(function(url) {return new URL(url, location.href);}));
