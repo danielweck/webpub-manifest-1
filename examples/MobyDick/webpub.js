@@ -49,7 +49,11 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
           var manifest_url = new URL(document.publication, appmanifest_url).href;
           console.log("Detected publication in Web App Manifest at: "+manifest_url);
           return manifest_url;
-      }})
+        } else {
+          console.log("Could not find a Web Publication Manifest");
+        };
+      };
+    })
   }
 
   function verifyAndCacheManifest(url) {
@@ -61,7 +65,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
           return cacheManifest(url);
         } else {
           console.log("Found cache key");
-        }
+        };
       })
     });
   };
@@ -69,7 +73,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   function cacheURL(data, manifest_url) {
     return caches.open(manifest_url).then(function(cache) {
       return cache.addAll(data.map(function(url) {
-        console.log("Caching "+url+" with base URI set to "+manifest_url);
+        console.log("Caching "+url);
         return new URL(url, manifest_url);
       }));
     });
