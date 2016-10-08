@@ -53,7 +53,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   }
 
   function verifyAndCacheManifest(url) {
-    caches.open(url).then(function(cache) {
+    return caches.open(url).then(function(cache) {
       return cache.match(url).then(function(response){
         if (!response) {
           console.log("No cache key found");
@@ -69,7 +69,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   function cacheURL(data) {
     return caches.open(manifest_url).then(function(cache) {
       return cache.addAll(data.map(function(url) {
-        console.log("Caching "+url+" with base URI set to "+manifest_url)
+        console.log("Caching "+url+" with base URI set to "+manifest_url);
         return new URL(url, manifest_url);
       }));
     });
