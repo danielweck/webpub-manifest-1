@@ -23,7 +23,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     }); 
   };
 
-  var manifest = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href;
+  var manifest_url = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href;
   var appmanifest = document.querySelector("link[rel='manifest'][type='application/manifest+json']").href;
 
   if (manifest) {
@@ -33,7 +33,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
         if (!response) {
           console.log("No cache key found");
           console.log('Caching manifest at:'+manifest_url);
-          return cacheManifest(manifest);
+          return cacheManifest(manifest_url);
         } else {
           console.log("Found cache key");
         }
