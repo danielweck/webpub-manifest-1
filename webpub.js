@@ -33,7 +33,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     getManifest(manifest_url).then(function(json) { return json.spine} ).then(function(spine) {
       var current_index = spine.findIndex(function(element) {
         var element_url = new URL(element.href, manifest_url);
-        return element_url == location.href
+        return element_url.href == location.href
       })
       console.log("Current position in spine: "+current_index);
     });
