@@ -56,9 +56,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   };
 
   function cacheManifest(url) {
-    return getManifest(url).then(function(cache) {
-      return Promise.all([cacheSpine(url), cacheResources(url)])
-    });
+    return Promise.all([cacheSpine(getManifest(url)), cacheResources(getManifest(url))])
   };
 
   function cacheSpine(webpub) {
