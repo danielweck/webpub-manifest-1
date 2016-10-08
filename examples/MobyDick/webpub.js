@@ -53,7 +53,6 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   }
 
   function verifyAndCacheManifest(url) {
-    var manifest_url = url;
     return caches.open(url).then(function(cache) {
       return cache.match(url).then(function(response){
         if (!response) {
@@ -68,7 +67,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   };
   
   //TODO: This function currently breaks with the App Cache Manifest use case, because manifest_url is undefined
-  function cacheURL(data) {
+  function cacheURL(data, manifest_url) {
     return caches.open(manifest_url).then(function(cache) {
       return cache.addAll(data.map(function(url) {
         console.log("Caching "+url+" with base URI set to "+manifest_url);
@@ -79,19 +78,19 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
   function cacheManifest(url) {
     var manifestJSON = getManifest(url);
-    return Promise.all([cacheSpine(manifestJSON), cacheResources(manifestJSON)])
+    return Promise.all([cacheSpine(manifestJSON, url), cacheResources(manifestJSON, url)])
   };
 
-  function cacheSpine(webpub) {
+  function cacheSpine(manifestJSON, url) {
     return webpub.then(function(manifest) {
       return manifest.spine.map(function(el) { return el.href});}).then(function(data) {
         data.push(manifest_url);
-        return cacheURL(data);})
+        return cacheURL(data, url);})
   };
 
-  function cacheResources(webpub) {
+  function cacheResources(manifestJSON, url) {
     return webpub.then(function(manifest) {
-      return manifest.resources.map(function(el) { return el.href});}).then(function(data) {return cacheURL(data);})
+      return manifest.resources.map(function(el) { return el.href});}).then(function(data) {return cacheURL(data, url);})
   };
 
 }());
