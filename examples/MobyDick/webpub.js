@@ -23,14 +23,15 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     }); 
   };
 
-  var manifest_url = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href;
+  var manifest = document.querySelector("link[rel='manifest'][type='application/webpub+json']");
+  if(manifest){ var manifest_url = manifest.href};
   var appmanifest = document.querySelector("link[rel='manifest'][type='application/manifest+json']").href;
 
-  if (appmanifest && !manifest_url) {
-    fetch(appmanifest).then(function(response) {
+  if (appmanifest_url && !manifest_url) {
+    fetch(appmanifest_url).then(function(response) {
       return response.json();}).then(function(document){
         if (document.publication) {
-          manifest_url = new URL(document.publication, appmanifest).href;
+          manifest_url = new URL(document.publication, appmanifest_url).href;
           return manifest_url.href;
         }})
   };
