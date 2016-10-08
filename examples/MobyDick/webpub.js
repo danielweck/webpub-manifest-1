@@ -30,7 +30,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
   if (manifest_url) {
     verifyAndCacheManifest(manifest_url);
-  } if (appmaniferst_url) {
+  } if (appmanifest_url) {
     getManifestFromAppManifest(appmanifest_url);
     verifyAndCacheManifest(manifest_url);
   }
