@@ -35,9 +35,11 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
         var element_url = new URL(element.href, manifest_url);
         return element_url.href == location.href
       })
-      console.log("Current position in spine: "+current_index);
-      if (current_index > 0) {console.log("Previous document is: "+spine[current_index - 1].href)};
-      if (current_index < (spine.length-1)) {console.log("Next document is: "+spine[current_index + 1].href)};
+      if (current_index) {
+        console.log("Current position in spine: "+current_index);
+        if (current_index > 0) {console.log("Previous document is: "+spine[current_index - 1].href)};
+        if (current_index < (spine.length-1)) {console.log("Next document is: "+spine[current_index + 1].href)};
+      }
     });
   } else if (appmanifest_url) {
     getManifestFromAppManifest(appmanifest_url).then(function(manifest_url){verifyAndCacheManifest(manifest_url)}).catch(function() {});
