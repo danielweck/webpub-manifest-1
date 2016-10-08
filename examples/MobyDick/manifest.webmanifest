@@ -25,5 +25,6 @@
     }
   ],
   "background_color": "#FAFAFA",
-  "display": "standalone"
+  "display": "standalone",
+  "publication": "manifest.json"
 }
