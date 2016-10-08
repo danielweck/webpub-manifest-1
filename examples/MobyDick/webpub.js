@@ -25,7 +25,8 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
   var manifest = document.querySelector("link[rel='manifest'][type='application/webpub+json']");
   if(manifest){ var manifest_url = manifest.href};
-  var appmanifest = document.querySelector("link[rel='manifest'][type='application/manifest+json']").href;
+  var appmanifest = document.querySelector("link[rel='manifest'][type='application/manifest+json']");
+  if(appmanifest){ var appmanifest_url = appmanifest.href};
 
   if (appmanifest_url && !manifest_url) {
     fetch(appmanifest_url).then(function(response) {
