@@ -34,7 +34,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     getManifestFromAppManifest(appmanifest_url).then(function(manifest_url){verifyAndCacheManifest(manifest_url)});
   }
   else {
-    console.log('No Web Publication Manifest detected');
+    console.log('No manifest detected');
   };
 
   function getManifest(url) {
@@ -68,7 +68,10 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   
   function cacheURL(data) {
     return caches.open(manifest_url).then(function(cache) {
-      return cache.addAll(data.map(function(url) {return new URL(url, manifest_url);}));
+      return cache.addAll(data.map(function(url) {
+        console.log("Caching "+url+" with base URI set to "+manifest_url)
+        return new URL(url, manifest_url);
+      }));
     });
   };
 
