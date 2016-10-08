@@ -28,37 +28,43 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   var appmanifest = document.querySelector("link[rel='manifest'][type='application/manifest+json']");
   if(appmanifest) {var appmanifest_url = appmanifest.href};
 
-  if (appmanifest_url && !manifest_url) {
-    Promise.resolve(fetch(appmanifest_url).then(function(response) {
-      return response.json();}).then(function(document){
-        if (document.publication) {
-          console.log("Detected publication in Web App Manifest")
-          var manifest_url = new URL(document.publication, appmanifest_url).href;
-          return manifest_url.href;
-        }}))
-  };
-
   if (manifest_url) {
-      
-    caches.open(manifest_url).then(function(cache) {
-      return cache.match(manifest_url).then(function(response){
-        if (!response) {
-          console.log("No cache key found");
-          console.log('Caching manifest at:'+manifest_url);
-          return cacheManifest(manifest_url);
-        } else {
-          console.log("Found cache key");
-        }
-      })
-    });
-      
-  } else {
+    verifyAndCacheManifest(manifest_url);
+  } if (appmaniferst_url) {
+    getManifestFromAppManifest(appmanifest_url);
+    verifyAndCacheManifest(manifest_url);
+  }
+  else {
     console.log('No Web Publication Manifest detected');
   };
 
   function getManifest(url) {
     return fetch(url).then(function(response) {
       return response.json();})
+  };
+
+  function getManifestFromAppManifest(url) {
+    fetch(appmanifest_url).then(function(response) {
+      return response.json();}).then(function(document){
+        if (document.publication) {
+          console.log("Detected publication in Web App Manifest");
+          var manifest_url = new URL(document.publication, appmanifest_url).href;
+          return manifest_url.href;
+      }})
+  }
+
+  function verifyAndCacheManifest(url) {
+    caches.open(url).then(function(cache) {
+      return cache.match(url).then(function(response){
+        if (!response) {
+          console.log("No cache key found");
+          console.log('Caching manifest at:'+url);
+          return cacheManifest(url);
+        } else {
+          console.log("Found cache key");
+        }
+      })
+    });
   };
   
   function cacheURL(data) {
@@ -68,7 +74,8 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   };
 
   function cacheManifest(url) {
-    return Promise.all([cacheSpine(getManifest(url)), cacheResources(getManifest(url))])
+    var manifestJSON = getManifest(url);
+    return Promise.all([cacheSpine(manifestJSON), cacheResources(manifestJSON)])
   };
 
   function cacheSpine(webpub) {
