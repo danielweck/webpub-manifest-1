@@ -43,16 +43,15 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   };
 
   function getManifestFromAppManifest(url) {
-    return fetch(appmanifest_url).then(function(response) {
-      return response.json();}).then(function(document){
-        if (document.publication) {
-          var manifest_url = new URL(document.publication, appmanifest_url).href;
-          console.log("Detected publication in Web App Manifest at: "+manifest_url);
-          return manifest_url;
-        } else {
-          console.log("Could not find a Web Publication Manifest");
-        };
-      }})
+    return fetch(appmanifest_url).then(function(response) { return response.json() }).then(function(document){
+      if (document.publication) {
+        var manifest_url = new URL(document.publication, appmanifest_url).href;
+        console.log("Detected publication in Web App Manifest at: "+manifest_url);
+        return manifest_url;
+      } else {
+        console.log("Could not find a Web Publication Manifest");
+      }
+    })
   }
 
   function verifyAndCacheManifest(url) {
