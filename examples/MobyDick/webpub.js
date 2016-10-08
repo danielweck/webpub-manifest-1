@@ -53,6 +53,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   }
 
   function verifyAndCacheManifest(url) {
+    var manifest_url = url;
     return caches.open(url).then(function(cache) {
       return cache.match(url).then(function(response){
         if (!response) {
