@@ -29,13 +29,13 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   if(appmanifest) {var appmanifest_url = appmanifest.href};
 
   if (appmanifest_url && !manifest_url) {
-    fetch(appmanifest_url).then(function(response) {
+    Promise.resolve(fetch(appmanifest_url).then(function(response) {
       return response.json();}).then(function(document){
         if (document.publication) {
           console.log("Detected publication in Web App Manifest")
           var manifest_url = new URL(document.publication, appmanifest_url).href;
           return manifest_url.href;
-        }})
+        }}))
   };
 
   if (manifest_url) {
