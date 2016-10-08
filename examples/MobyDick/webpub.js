@@ -48,7 +48,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
         if (document.publication) {
           var manifest_url = new URL(document.publication, appmanifest_url).href;
           console.log("Detected publication in Web App Manifest at: "+manifest_url);
-          return manifest_url.href;
+          return manifest_url;
       }})
   }
 
