@@ -30,7 +30,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
   if (manifest_url) {
     verifyAndCacheManifest(manifest_url);
-  } if (appmanifest_url) {
+  } else if (appmanifest_url) {
     getManifestFromAppManifest(appmanifest_url).then(function(manifest_url){verifyAndCacheManifest(manifest_url)});
   }
   else {
@@ -67,6 +67,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     });
   };
   
+  //TODO: This function currently breaks with the App Cache Manifest use case, because manifest_url is undefined
   function cacheURL(data) {
     return caches.open(manifest_url).then(function(cache) {
       return cache.addAll(data.map(function(url) {
