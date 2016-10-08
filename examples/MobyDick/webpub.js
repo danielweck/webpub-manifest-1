@@ -66,7 +66,6 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     });
   };
   
-  //TODO: This function currently breaks with the App Cache Manifest use case, because manifest_url is undefined
   function cacheURL(data, manifest_url) {
     return caches.open(manifest_url).then(function(cache) {
       return cache.addAll(data.map(function(url) {
@@ -84,7 +83,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   function cacheSpine(manifestJSON, url) {
     return manifestJSON.then(function(manifest) {
       return manifest.spine.map(function(el) { return el.href});}).then(function(data) {
-        data.push(manifest_url);
+        data.push(url);
         return cacheURL(data, url);})
   };
 
