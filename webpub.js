@@ -13,7 +13,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
   if (navigator.serviceWorker) {
     //Basic SW
-    navigator.serviceWorker.register('./sw.js');
+    navigator.serviceWorker.register('/webpub-manifest/sw.js');
 
     //SW based on sw-toolbox that also generates the Web App Manifest
     //navigator.serviceWorker.register('sw-toolobox-cache.js');
