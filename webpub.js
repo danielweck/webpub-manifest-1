@@ -30,12 +30,12 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
   if (manifest_url) {
     verifyAndCacheManifest(manifest_url).catch(function() {});
-    getManifest(url).then(function(json) { return json.spine} ).then(function(spine) {
+    getManifest(manifest_url).then(function(json) { return json.spine} ).then(function(spine) {
       var current_index = spine.findIndex(function(element) {
         var element_url = new URL(element.href, manifest_url);
         element_url == location.href;  
       })
-      console.log("Current position in spine: "+current_index)
+      console.log("Current position in spine: "+current_index);
     });
   } else if (appmanifest_url) {
     getManifestFromAppManifest(appmanifest_url).then(function(manifest_url){verifyAndCacheManifest(manifest_url)}).catch(function() {});
