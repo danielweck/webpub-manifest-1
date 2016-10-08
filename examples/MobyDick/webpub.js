@@ -82,14 +82,14 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   };
 
   function cacheSpine(webpub) {
-    webpub.then(function(manifest) {
+    return webpub.then(function(manifest) {
       return manifest.spine.map(function(el) { return el.href});}).then(function(data) {
         data.push(manifest_url);
         return cacheURL(data);})
   };
 
   function cacheResources(webpub) {
-    webpub.then(function(manifest) {
+    return webpub.then(function(manifest) {
       return manifest.resources.map(function(el) { return el.href});}).then(function(data) {return cacheURL(data);})
   };
 
