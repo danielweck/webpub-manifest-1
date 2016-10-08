@@ -31,7 +31,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   if (manifest_url) {
     verifyAndCacheManifest(manifest_url);
   } else if (appmanifest_url) {
-    getManifestFromAppManifest(appmanifest_url).then(function(manifest_url){verifyAndCacheManifest(manifest_url)});
+    getManifestFromAppManifest(appmanifest_url).then(function(manifest_url){verifyAndCacheManifest(manifest_url)}).catch(function() {});
   }
   else {
     console.log('No manifest detected');
