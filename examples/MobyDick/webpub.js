@@ -52,8 +52,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
         } else {
           console.log("Could not find a Web Publication Manifest");
         };
-      };
-    })
+      }})
   }
 
   function verifyAndCacheManifest(url) {
