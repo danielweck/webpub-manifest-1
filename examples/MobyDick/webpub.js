@@ -21,20 +21,19 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     navigator.serviceWorker.ready.then(function() {
       console.log('SW ready');
     }); 
-  }
+  };
 
-  var manifest_url = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href
+  var manifest = document.querySelector("link[rel='manifest'][type='application/webpub+json']").href;
+  var appmanifest = document.querySelector("link[rel='manifest'][type='application/manifest+json']").href;
 
-  if (manifest_url) {
+  if (manifest) {
       
     caches.open(manifest_url).then(function(cache) {
       return cache.match(manifest_url).then(function(response){
         if (!response) {
           console.log("No cache key found");
           console.log('Caching manifest at:'+manifest_url);
-          var webpub = getManifest(manifest_url)
-          cacheSpine(webpub);
-          cacheResources(webpub);
+          return cacheManifest(manifest);
         } else {
           console.log("Found cache key");
         }
@@ -43,7 +42,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
       
   } else {
     console.log('No Web Publication Manifest detected');
-  }
+  };
 
   function getManifest(url) {
     return fetch(url).then(function(response) {
@@ -53,6 +52,12 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   function cacheURL(data) {
     return caches.open(manifest_url).then(function(cache) {
       return cache.addAll(data.map(function(url) {return new URL(url, location.href);}));
+    });
+  };
+
+  function cacheManifest(url) {
+    return getManifest(url).then(function(cache) {
+      return Promise.all([cacheSpine(url), cacheResources(url)])
     });
   };
 
