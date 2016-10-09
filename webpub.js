@@ -1,9 +1,14 @@
 /* 
-Very early demo, that does two things:
+Very early demo:
 - cache resources necessary for reading the publication offline
 - generates a Web App Manifest (if you activate the sw-toolbox variant)
+- provides the prev/next page in the console
 
 This script checks if the manifest file is stored in the cache, and only precaches resources if it isn't.
+
+It can extract the location of the Web Publication Manifest:
+- either directly from a link in the page
+- or indirectly through a Web App Manifest
 
 Check the full list of expected features at: 
 https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
@@ -23,6 +28,9 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     }); 
   };
 
+  //Set this variable to true to override the publication's navigation with the spine from the manifest
+  var navigation = true;
+
   var manifest = document.querySelector("link[rel='manifest'][type='application/webpub+json']");
   if(manifest) {var manifest_url = manifest.href};
   var appmanifest = document.querySelector("link[rel='manifest'][type='application/manifest+json']");
@@ -37,11 +45,25 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
       })
       if (current_index >= 0) {
         console.log("Current position in spine: "+current_index);
-        if (current_index > 0) {console.log("Previous document is: "+spine[current_index - 1].href)};
-        if (current_index < (spine.length-1)) {console.log("Next document is: "+spine[current_index + 1].href)};
+        var navigation = document.querySelector("nav.publication");
+        navigation.innerHTML = "";
+        if (current_index > 0) {
+          console.log("Previous document is: "+spine[current_index - 1].href);
+          var previous = document.createElement("a");
+          previous.href = new URL(spine[current_index - 1].href, manifest_url).href;
+          previous.textContent = "Previous";
+          navigation.appendChild(previous);
+        };
+        if (current_index < (spine.length-1)) {
+          console.log("Next document is: "+spine[current_index + 1].href);
+          var next = document.createElement("a");
+          next.href = new URL(spine[current_index + 1].href, manifest_url).href;
+          next.textContent = "Previous";
+          navigation.appendChild(next);
+        };
       }
     });
-  } else if (appmanifest_url) {
+  } else if (appmanifest_url && !manifest_url) {
     getManifestFromAppManifest(appmanifest_url).then(function(manifest_url){verifyAndCacheManifest(manifest_url)}).catch(function() {});
   }
   else {
