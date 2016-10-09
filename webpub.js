@@ -38,38 +38,11 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
   if (manifest_url) {
     verifyAndCacheManifest(manifest_url).catch(function() {});
-    getManifest(manifest_url).then(function(json) { return json.spine} ).then(function(spine) {
-      var current_index = spine.findIndex(function(element) {
-        var element_url = new URL(element.href, manifest_url);
-        return element_url.href == location.href
-      })
-      if (current_index >= 0) {
-        console.log("Current position in spine: "+current_index);
-        var navigation = document.querySelector("nav.publication");
-        navigation.innerHTML = "";
-        navigation.style = "text-align: right;"
-        if (current_index > 0) {
-          console.log("Previous document is: "+spine[current_index - 1].href);
-          var previous = document.createElement("a");
-          previous.href = new URL(spine[current_index - 1].href, manifest_url).href;
-          previous.rel = "prev;"
-          previous.textContent = "< Previous";
-          navigation.appendChild(previous);
-          navigation.appendChild( document.createTextNode( '\u00A0' ) );
-        };
-        if (current_index < (spine.length-1)) {
-          console.log("Next document is: "+spine[current_index + 1].href);
-          var next = document.createElement("a");
-          next.href = new URL(spine[current_index + 1].href, manifest_url).href;
-          next.rel = "next";
-          next.textContent = "Next >";
-          navigation.appendChild( document.createTextNode( '\u00A0' ) );
-          navigation.appendChild(next);
-        };
-      }
-    });
+    addNavigation(manifest_url).catch(function() {});
   } else if (appmanifest_url && !manifest_url) {
-    getManifestFromAppManifest(appmanifest_url).then(function(manifest_url){verifyAndCacheManifest(manifest_url)}).catch(function() {});
+    var manifestPromise = getManifestFromAppManifest(appmanifest_url);
+    manifestPromise.then(function(manifest_url){verifyAndCacheManifest(manifest_url)}).catch(function() {});
+    manifestPromise.then(function(manifest_url){addNavigation(manifest_url)}).catch(function() {});
   }
   else {
     console.log('No manifest detected');
@@ -131,6 +104,50 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   function cacheResources(manifestJSON, url) {
     return manifestJSON.then(function(manifest) {
       return manifest.resources.map(function(el) { return el.href});}).then(function(data) {return cacheURL(data, url);})
+  };
+
+  function addNavigation(url) {
+    return getManifest(url).then(function(json) { return json.spine} ).then(function(spine) {
+      var current_index = spine.findIndex(function(element) {
+        var element_url = new URL(element.href, url);
+        return element_url.href == location.href
+      })
+      
+      if (current_index >= 0) {
+
+        console.log("Current position in spine: "+current_index);
+        var navigation = document.querySelector("nav.publication");
+        if (navigation) {
+          navigation.innerHTML = "";
+          navigation.style = "text-align: right;"
+        } else {
+          navigation = document.createElement("nav");
+          navigation.class = "publication";
+          navigation.style = "text-align: right;";
+          document.body.appendChild(navigation);
+        };
+
+        if (current_index > 0) {
+          console.log("Previous document is: "+spine[current_index - 1].href);
+          var previous = document.createElement("a");
+          previous.href = new URL(spine[current_index - 1].href, url).href;
+          previous.rel = "prev;"
+          previous.textContent = "< Previous";
+          navigation.appendChild(previous);
+          navigation.appendChild( document.createTextNode( '\u00A0' ) );
+        };
+        
+        if (current_index < (spine.length-1)) {
+          console.log("Next document is: "+spine[current_index + 1].href);
+          var next = document.createElement("a");
+          next.href = new URL(spine[current_index + 1].href, url).href;
+          next.rel = "next";
+          next.textContent = "Next >";
+          navigation.appendChild( document.createTextNode( '\u00A0' ) );
+          navigation.appendChild(next);
+        };
+      }
+    });
   };
 
 }());
