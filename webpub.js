@@ -1,8 +1,10 @@
 /* 
-Very early demo:
-- cache resources necessary for reading the publication offline
-- generates a Web App Manifest (if you activate the sw-toolbox variant)
-- provides the prev/next page in the console
+This is the 1.0 version of the Web Publication JS prototype.
+
+It now supports:
+- caching resources necessary for reading the publication offline
+- generating a Web App Manifest (if you activate the sw-toolbox variant)
+- adding navigation to the previous and/or next resource in the publication
 
 This script checks if the manifest file is stored in the cache, and only precaches resources if it isn't.
 
@@ -10,7 +12,9 @@ It can extract the location of the Web Publication Manifest:
 - either directly from a link in the page
 - or indirectly through a Web App Manifest
 
-Check the full list of expected features at: 
+This prototype is very chatty, check your console to see what's going on.
+
+Check the full list of potential features at: 
 https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 */
 
@@ -27,9 +31,6 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
       console.log('SW ready');
     }); 
   };
-
-  //Set this variable to true to override the publication's navigation with the spine from the manifest
-  var navigation = true;
 
   var manifest = document.querySelector("link[rel='manifest'][type='application/webpub+json']");
   if(manifest) {var manifest_url = manifest.href};
@@ -71,7 +72,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
       return cache.match(url).then(function(response){
         if (!response) {
           console.log("No cache key found");
-          console.log('Caching manifest at:'+url);
+          console.log('Caching manifest at: '+url);
           return cacheManifest(url);
         } else {
           console.log("Found cache key");
