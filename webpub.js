@@ -122,7 +122,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
           navigation.style = "text-align: right;"
         } else {
           navigation = document.createElement("nav");
-          navigation.class = "publication";
+          navigation.className = "publication";
           navigation.style = "text-align: right;";
           document.body.appendChild(navigation);
         };
