@@ -51,14 +51,14 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
           console.log("Previous document is: "+spine[current_index - 1].href);
           var previous = document.createElement("a");
           previous.href = new URL(spine[current_index - 1].href, manifest_url).href;
-          previous.textContent = "&lt; Previous &nbsp;";
+          previous.textContent = "< Previous –";
           navigation.appendChild(previous);
         };
         if (current_index < (spine.length-1)) {
           console.log("Next document is: "+spine[current_index + 1].href);
           var next = document.createElement("a");
           next.href = new URL(spine[current_index + 1].href, manifest_url).href;
-          next.textContent = "&nbsp; Next &gt;";
+          next.textContent = "– Next >";
           navigation.appendChild(next);
         };
       }
