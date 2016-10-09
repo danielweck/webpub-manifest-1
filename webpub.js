@@ -47,12 +47,11 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
       };
     }); 
   };
+  
 
   function getManifest(url) {
-    return caches.match(url).catch(function() {
-      fetch(url).then(function(response) {
-        return response.json();
-      })
+    return fetch(url).then(function(response) {
+      return response.json();
     })
   };
 
