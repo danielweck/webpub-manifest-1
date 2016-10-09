@@ -58,7 +58,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
           console.log("Next document is: "+spine[current_index + 1].href);
           var next = document.createElement("a");
           next.href = new URL(spine[current_index + 1].href, manifest_url).href;
-          next.textContent = "Previous";
+          next.textContent = "Next";
           navigation.appendChild(next);
         };
       }
