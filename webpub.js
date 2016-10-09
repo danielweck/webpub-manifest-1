@@ -47,18 +47,23 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
         console.log("Current position in spine: "+current_index);
         var navigation = document.querySelector("nav.publication");
         navigation.innerHTML = "";
+        navigation.style = "text-align: right;"
         if (current_index > 0) {
           console.log("Previous document is: "+spine[current_index - 1].href);
           var previous = document.createElement("a");
           previous.href = new URL(spine[current_index - 1].href, manifest_url).href;
-          previous.textContent = "< Previous –";
+          previous.rel = "prev;"
+          previous.textContent = "< Previous";
           navigation.appendChild(previous);
+          navigation.appendChild( document.createTextNode( '\u00A0' ) );
         };
         if (current_index < (spine.length-1)) {
           console.log("Next document is: "+spine[current_index + 1].href);
           var next = document.createElement("a");
           next.href = new URL(spine[current_index + 1].href, manifest_url).href;
-          next.textContent = "– Next >";
+          next.rel = "next";
+          next.textContent = "Next >";
+          navigation.appendChild( document.createTextNode( '\u00A0' ) );
           navigation.appendChild(next);
         };
       }
