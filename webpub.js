@@ -100,7 +100,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     return manifestJSON.then(function(manifest) {
       return manifest.spine.map(function(el) { return el.href});}).then(function(data) {
         data.push(url);
-        data.push(../../webpub.js);
+        data.push("../../webpub.js");
         return cacheURL(data, url);})
   };
 
