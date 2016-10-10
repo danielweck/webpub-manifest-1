@@ -1,4 +1,4 @@
-/* Simple prototype for a Web App based on an iframe. */
+/* Simple prototype for a Web App for Web Publications based on an iframe. */
 
 (function() {
 
@@ -35,6 +35,7 @@
     if (next.hasAttribute("href")) {
       iframe.src = next.href;
       iframe.style.height = document.body.scrollHeight - 5 + 'px';
+      history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+next.href);
       updateNavigation(manifest_url).catch(function() {});
     };
     event.preventDefault();
@@ -44,6 +45,7 @@
     if ( previous.hasAttribute("href")) {
       iframe.src = previous.href;
       iframe.style.height = document.body.scrollHeight - 5 + 'px';
+      history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+previous.href);
       updateNavigation(manifest_url).catch(function() {});
     };
     event.preventDefault();
@@ -119,6 +121,7 @@
         iframe.src = start.href;
         next.href = new URL(spine[1].href, url).href;
         previous.removeAttribute("href");
+        history.pushState(null, null, "./?manifest=true&href="+url+"&document="+start.href);
         event.preventDefault();
       });
 
