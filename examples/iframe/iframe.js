@@ -54,15 +54,23 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   var next = document.querySelector("a[rel=next]");
   var previous = document.querySelector("a[rel=prev]");
 
+  iframe.style.height = document.body.scrollHeight + 'px';
+
   next.addEventListener("click", function(event) {
-    iframe.src = next.href;
-    updateNavigation(manifest_url);
+    if (next.hasAttribute("href")) {
+      iframe.src = next.href;
+      iframe.style.height = document.body.scrollHeight + 'px';
+      updateNavigation(manifest_url);
+    };
     event.preventDefault();
   });
 
   previous.addEventListener("click", function(event) {
-    iframe.src = previous.href;
-    updateNavigation(manifest_url);
+    if ( previous.hasAttribute("href")) {
+      iframe.src = previous.href;
+      iframe.style.height = document.body.scrollHeight + 'px';
+      updateNavigation(manifest_url);
+    };
     event.preventDefault();
   });
 
@@ -127,7 +135,11 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   };
 
   function initializeNavigation(url) {
-    return getManifest(url).then(function(json) { return json.spine} ).then(function(spine) {
+    return getManifest(url).then(function(json) { 
+      var title = json.metadata.title;
+      console.log("Title of the publication: "+title);
+      return json.spine;
+    }).then(function(spine) {
       
       //Find iframe and set start document
       var iframe = document.querySelector("iframe");
