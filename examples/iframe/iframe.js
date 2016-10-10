@@ -53,13 +53,14 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   var iframe = document.querySelector("iframe");
   var next = document.querySelector("a[rel=next]");
   var previous = document.querySelector("a[rel=prev]");
+  var navigation = document.querySelector("div[class=controls]");
 
-  iframe.style.height = document.body.scrollHeight + 'px';
+  iframe.style.height = document.body.scrollHeight - navigation.scrollHeight + 'px';
 
   next.addEventListener("click", function(event) {
     if (next.hasAttribute("href")) {
       iframe.src = next.href;
-      iframe.style.height = document.body.scrollHeight + 'px';
+      iframe.style.height = document.body.scrollHeight - navigation.scrollHeight + 'px';
       updateNavigation(manifest_url);
     };
     event.preventDefault();
@@ -68,7 +69,7 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   previous.addEventListener("click", function(event) {
     if ( previous.hasAttribute("href")) {
       iframe.src = previous.href;
-      iframe.style.height = document.body.scrollHeight + 'px';
+      iframe.style.height = document.body.scrollHeight - navigation.scrollHeight + 'px';
       updateNavigation(manifest_url);
     };
     event.preventDefault();
