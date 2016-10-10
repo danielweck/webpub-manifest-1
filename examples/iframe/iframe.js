@@ -29,12 +29,12 @@
   var previous = document.querySelector("a[rel=prev]");
   var navigation = document.querySelector("div[class=controls]");
 
-  iframe.style.height = document.body.scrollHeight - navigation.scrollHeight + 'px';
+  iframe.style.height = document.body.scrollHeight - 5 + 'px';
 
   next.addEventListener("click", function(event) {
     if (next.hasAttribute("href")) {
       iframe.src = next.href;
-      iframe.style.height = document.body.scrollHeight - navigation.scrollHeight + 'px';
+      iframe.style.height = document.body.scrollHeight - 5 + 'px';
       updateNavigation(manifest_url).catch(function() {});
     };
     event.preventDefault();
@@ -43,7 +43,7 @@
   previous.addEventListener("click", function(event) {
     if ( previous.hasAttribute("href")) {
       iframe.src = previous.href;
-      iframe.style.height = document.body.scrollHeight - navigation.scrollHeight + 'px';
+      iframe.style.height = document.body.scrollHeight - 5 + 'px';
       updateNavigation(manifest_url).catch(function() {});
     };
     event.preventDefault();
