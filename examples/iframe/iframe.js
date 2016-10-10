@@ -1,55 +1,29 @@
-/* 
-This is the 1.0 version of the Web Publication JS prototype.
-
-It now supports:
-- caching resources necessary for reading the publication offline
-- generating a Web App Manifest (if you activate the sw-toolbox variant)
-- adding navigation to the previous and/or next resource in the publication
-
-This script checks if the manifest file is stored in the cache, and only precaches resources if it isn't.
-
-It can extract the location of the Web Publication Manifest:
-- either directly from a link in the page
-- or indirectly through a Web App Manifest
-
-This prototype is very chatty, check your console to see what's going on.
-
-Check the full list of potential features at: 
-https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
-*/
+/* Simple prototype for a Web App based on an iframe. */
 
 (function() {
 
   if (navigator.serviceWorker) {
     //Basic SW
     navigator.serviceWorker.register('/webpub-manifest/sw.js');
-
-    //SW based on sw-toolbox that also generates the Web App Manifest
-    //navigator.serviceWorker.register('sw-toolobox-cache.js');
   
     navigator.serviceWorker.ready.then(function() {
       console.log('SW ready');
     }); 
   };
   
-  var manifest = document.querySelector("link[rel='manifest'][type='application/webpub+json']");
-  if(manifest) {var manifest_url = manifest.href};
-  var appmanifest = document.querySelector("link[rel='manifest'][type='application/manifest+json']");
-  if(appmanifest) {var appmanifest_url = appmanifest.href};
+  var DEFAULT_MANIFEST = "https://hadriengardeur.github.io/webpub-manifest/examples/MobyDick/manifest.json";
+  var current_url_params = new URLSearchParams(location.href);
 
-  if (manifest_url) {
-    verifyAndCacheManifest(manifest_url).catch(function() {});
-    initializeNavigation(manifest_url).catch(function() {});
-  } 
-  else if (appmanifest_url && !manifest_url) {
-    var manifestPromise = getManifestFromAppManifest(appmanifest_url);
-    manifestPromise.then(function(manifest_url){verifyAndCacheManifest(manifest_url)}).catch(function() {});
-    manifestPromise.then(function(manifest_url){initializeNavigation(manifest_url)}).catch(function() {});
-  }
-  else {
-    console.log('No manifest detected');
+  if (current_url_params.has("href")) {
+    console.log("Found manifest in params")
+    var manifest_url = current_url_params.get("href");
+  } else {
+    var manifest_url = DEFAULT_MANIFEST;
   };
 
+  verifyAndCacheManifest(manifest_url).catch(function() {});
+  initializeNavigation(manifest_url).catch(function() {});
+  
   var iframe = document.querySelector("iframe");
   var next = document.querySelector("a[rel=next]");
   var previous = document.querySelector("a[rel=prev]");
@@ -75,25 +49,11 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     event.preventDefault();
   });
 
-
   function getManifest(url) {
     return fetch(url).then(function(response) {
       return response.json();
     })
   };
-
-  function getManifestFromAppManifest(url) {
-    return fetch(appmanifest_url).then(function(response) { return response.json() }).then(function(document){
-      if (document.publication) {
-        var manifest_url = new URL(document.publication, appmanifest_url).href;
-        console.log("Detected publication in Web App Manifest at: "+manifest_url);
-        return manifest_url;
-      } else {
-        console.log("Could not find a Web Publication Manifest");
-        throw new Error("Could not find a Web Publication Manifest");
-      }
-    })
-  }
 
   function verifyAndCacheManifest(url) {
     return caches.open(url).then(function(cache) {
