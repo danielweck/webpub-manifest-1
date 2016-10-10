@@ -35,7 +35,7 @@
     if (next.hasAttribute("href")) {
       iframe.src = next.href;
       iframe.style.height = document.body.scrollHeight - navigation.scrollHeight + 'px';
-      updateNavigation(manifest_url);
+      updateNavigation(manifest_url).catch(function() {});
     };
     event.preventDefault();
   });
@@ -44,7 +44,7 @@
     if ( previous.hasAttribute("href")) {
       iframe.src = previous.href;
       iframe.style.height = document.body.scrollHeight - navigation.scrollHeight + 'px';
-      updateNavigation(manifest_url);
+      updateNavigation(manifest_url).catch(function() {});
     };
     event.preventDefault();
   });
@@ -99,6 +99,7 @@
     return getManifest(url).then(function(json) { 
       var title = json.metadata.title;
       console.log("Title of the publication: "+title);
+      document.querySelector("title").textContent = title;
       return json.spine;
     }).then(function(spine) {
       
