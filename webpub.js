@@ -29,25 +29,26 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   
     navigator.serviceWorker.ready.then(function() {
       console.log('SW ready');
-      var manifest = document.querySelector("link[rel='manifest'][type='application/webpub+json']");
-      if(manifest) {var manifest_url = manifest.href};
-      var appmanifest = document.querySelector("link[rel='manifest'][type='application/manifest+json']");
-      if(appmanifest) {var appmanifest_url = appmanifest.href};
-
-      if (manifest_url) {
-        verifyAndCacheManifest(manifest_url).catch(function() {});
-        addNavigation(manifest_url).catch(function() {});
-      } else if (appmanifest_url && !manifest_url) {
-        var manifestPromise = getManifestFromAppManifest(appmanifest_url);
-        manifestPromise.then(function(manifest_url){verifyAndCacheManifest(manifest_url)}).catch(function() {});
-        manifestPromise.then(function(manifest_url){addNavigation(manifest_url)}).catch(function() {});
-      }
-      else {
-        console.log('No manifest detected');
-      };
     }); 
   };
   
+  var manifest = document.querySelector("link[rel='manifest'][type='application/webpub+json']");
+  if(manifest) {var manifest_url = manifest.href};
+  var appmanifest = document.querySelector("link[rel='manifest'][type='application/manifest+json']");
+  if(appmanifest) {var appmanifest_url = appmanifest.href};
+
+  if (manifest_url) {
+    verifyAndCacheManifest(manifest_url).catch(function() {});
+    addNavigation(manifest_url).catch(function() {});
+  } else if (appmanifest_url && !manifest_url) {
+    var manifestPromise = getManifestFromAppManifest(appmanifest_url);
+    manifestPromise.then(function(manifest_url){verifyAndCacheManifest(manifest_url)}).catch(function() {});
+    manifestPromise.then(function(manifest_url){addNavigation(manifest_url)}).catch(function() {});
+  }
+  else {
+      console.log('No manifest detected');
+  };
+
 
   function getManifest(url) {
     return fetch(url).then(function(response) {
