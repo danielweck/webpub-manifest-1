@@ -1,4 +1,17 @@
+var CACHE_NAME = 'webpub-viewer';
+var urlsToCache = [
+  '/iframe/',
+  '/iframe/index.html',
+  '/iframe/viewer.js'
+];
+
 self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        return cache.addAll(urlsToCache);
+      })
+  );
   self.skipWaiting();
 });
 
