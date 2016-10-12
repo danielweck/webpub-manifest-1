@@ -21,6 +21,13 @@
     var manifest_url = DEFAULT_MANIFEST;
   };
 
+  if (current_url_params.has("document")) {
+    console.log("Found reference to a document in params")
+    var document_url = current_url_params.get("href");
+  } else {
+    var document_url = undefined;
+  };
+
   verifyAndCacheManifest(manifest_url).catch(function() {});
   initializeNavigation(manifest_url).catch(function() {});
   
@@ -30,6 +37,7 @@
   var navigation = document.querySelector("div[class=controls]");
 
   iframe.style.height = document.body.scrollHeight - 5 + 'px';
+  iframe.style.marginTop = navigation.scrollHeight + 'px';
 
   next.addEventListener("click", function(event) {
     if (next.hasAttribute("href")) {
