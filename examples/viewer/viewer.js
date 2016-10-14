@@ -36,14 +36,14 @@
   var previous = document.querySelector("a[rel=prev]");
   var navigation = document.querySelector("div[class=controls]");
 
-  iframe.style.height = document.body.scrollHeight - navigation.scrollHeight - 5 + 'px';
+  iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
   iframe.style.marginTop = navigation.scrollHeight + 'px';
 
   next.addEventListener("click", function(event) {
     if (next.hasAttribute("href")) {
       iframe.src = next.href;
-      iframe.style.height = document.body.scrollHeight - navigation.scrollHeight - 5 + 'px';
-      history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+next.href);
+      iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
+      //history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+next.href);
       updateNavigation(manifest_url).catch(function() {});
     };
     event.preventDefault();
@@ -52,8 +52,8 @@
   previous.addEventListener("click", function(event) {
     if ( previous.hasAttribute("href")) {
       iframe.src = previous.href;
-      iframe.style.height = document.body.scrollHeight - navigation.scrollHeight - 5 + 'px';
-      history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+previous.href);
+      iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
+      //history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+previous.href);
       updateNavigation(manifest_url).catch(function() {});
     };
     event.preventDefault();
@@ -128,10 +128,10 @@
       start.href = start_url; 
       start.addEventListener("click", function(event) {
         iframe.src = start.href;
-        iframe.style.height = document.body.scrollHeight - navigation.scrollHeight - 5 + 'px';
+        iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
         next.href = new URL(spine[1].href, url).href;
         previous.removeAttribute("href");
-        history.pushState(null, null, "./?manifest=true&href="+url+"&document="+start.href);
+        //history.pushState(null, null, "./?manifest=true&href="+url+"&document="+start.href);
         event.preventDefault();
       });
 
