@@ -28,7 +28,7 @@
     var document_url = undefined;
   };
 
-  verifyAndCacheManifest(manifest_url).catch(function() {});
+  if (navigator.serviceWorker) verifyAndCacheManifest(manifest_url).catch(function() {});
   initializeNavigation(manifest_url).catch(function() {});
   
   var iframe = document.querySelector("iframe");
