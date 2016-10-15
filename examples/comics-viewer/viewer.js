@@ -29,6 +29,24 @@
   if (navigator.serviceWorker) verifyAndCacheManifest(manifest_url).catch(function() {});
   initializeNavigation(manifest_url).catch(function() {});
   
+  var mc = new Hammer(left);
+
+  mc.on("swiperight", function(event) {
+    if (next.hasAttribute("href")) {
+      left.src = next.href;
+      window.scrollTo(0,0);
+      updateNavigation(manifest_url).catch(function() {});
+    };
+  });
+
+  mc.on("swipeleft", function(event) {
+    if ( previous.hasAttribute("href")) {
+      left.src = previous.href;
+      window.scrollTo(0,0);
+      updateNavigation(manifest_url).catch(function() {});
+    };
+  });
+
   next.addEventListener("click", function(event) {
     if (next.hasAttribute("href")) {
       left.src = next.href;
