@@ -31,7 +31,7 @@
   
   var mc = new Hammer(left);
 
-  mc.on("swiperight", function(event) {
+  mc.on("swiperight tap press", function(event) {
     if (next.hasAttribute("href")) {
       left.src = next.href;
       window.scrollTo(0,0);
