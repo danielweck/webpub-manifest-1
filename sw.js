@@ -2,7 +2,10 @@ var CACHE_NAME = 'webpub-viewer';
 var urlsToCache = [
   '/webpub-manifest/examples/viewer/index.html',
   '/webpub-manifest/examples/viewer/sandbox.html',
-  '/webpub-manifest/examples/viewer/viewer.js'
+  '/webpub-manifest/examples/viewer/viewer.js',
+  '/webpub-manifest/examples/comics-viewer/index.html',
+  '/webpub-manifest/examples/comics-viewer/viewer.js',
+  '/webpub-manifest/webpub.js'
 ];
 
 self.addEventListener('install', event => {
