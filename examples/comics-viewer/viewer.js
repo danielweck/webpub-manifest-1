@@ -31,7 +31,7 @@
   
   var mc = new Hammer(left);
 
-  mc.on("swiperight tap press", function(event) {
+  mc.on("swipeleft", function(event) {
     if (next.hasAttribute("href")) {
       left.src = next.href;
       window.scrollTo(0,0);
@@ -39,7 +39,7 @@
     };
   });
 
-  mc.on("swipeleft", function(event) {
+  mc.on("swiperight", function(event) {
     if ( previous.hasAttribute("href")) {
       left.src = previous.href;
       window.scrollTo(0,0);
