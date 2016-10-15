@@ -21,19 +21,12 @@
     var manifest_url = DEFAULT_MANIFEST;
   };
 
-  if (current_url_params.has("document")) {
-    console.log("Found reference to a document in params")
-    var document_url = current_url_params.get("href");
-  } else {
-    var document_url = undefined;
-  };
-
   var left = document.getElementById("left-page");
   var right = document.getElementById("right-page");
   var next = document.querySelector("a[rel=next]");
   var previous = document.querySelector("a[rel=prev]");
   
-  verifyAndCacheManifest(manifest_url).catch(function() {});
+  if (navigator.serviceWorker) verifyAndCacheManifest(manifest_url).catch(function() {});
   initializeNavigation(manifest_url).catch(function() {});
   
   next.addEventListener("click", function(event) {
