@@ -29,7 +29,7 @@ self.addEventListener('activate', event => {
 //It's a good balance between freshness and speed.
 self.addEventListener('fetch', event => {
   event.respondWith(fromNetwork(event.request, 400).catch(function () {
-    return caches.match(request);
+    return caches.match(event.request);
   }));
 
 });
