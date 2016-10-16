@@ -3,7 +3,7 @@
 (function() {
 
   if (navigator.serviceWorker) {
-    //Basic SW
+    //HINT: Make sure that the path to your Service Worker is correct
     navigator.serviceWorker.register('/webpub-manifest/sw.js');
   
     navigator.serviceWorker.ready.then(function() {
@@ -35,7 +35,7 @@
 
   if (navigator.serviceWorker) verifyAndCacheManifest(manifest_url).catch(function() {});
   initializeNavigation(manifest_url, document_url).catch(function() {});
-  
+
   iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
   iframe.style.marginTop = navigation.scrollHeight + 'px';
 
@@ -71,7 +71,6 @@
   });
 
   function getManifest(url) {
-    //TODO: Seems buggy when cross-domain, triggers a network request despite the SW policy
     return fetch(url).catch(function() {
       return caches.match(url);
     }).then(function(response) {

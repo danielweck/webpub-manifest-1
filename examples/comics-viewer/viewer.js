@@ -1,9 +1,9 @@
-/* Simple prototype for a Web App for Web Publications based on an iframe. */
+/* Simple prototype for a Web App for comics based on an image. */
 
 (function() {
 
   if (navigator.serviceWorker) {
-    //Basic SW
+    //HINT: Make sure that the path to your Service Worker is correct
     navigator.serviceWorker.register('/webpub-manifest/sw.js');
   
     navigator.serviceWorker.ready.then(function() {
@@ -66,7 +66,9 @@
   });
 
   function getManifest(url) {
-    return fetch(url).then(function(response) {
+    return fetch(url).catch(function() {
+      return caches.match(url);
+    }).then(function(response) {
       return response.json();
     })
   };

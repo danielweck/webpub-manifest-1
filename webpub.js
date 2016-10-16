@@ -51,7 +51,9 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
 
 
   function getManifest(url) {
-    return fetch(url).then(function(response) {
+    return fetch(url).catch(function() {
+      return caches.match(url);
+    }).then(function(response) {
       return response.json();
     })
   };
