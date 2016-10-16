@@ -47,8 +47,8 @@ self.addEventListener('fetch', event => {
 });
 
 async function whoHasRequest(request) {
-  const resp = await caches.match(request);
-  if (!resp) return null;
+  //const resp = await caches.match(request);
+  //if (!resp) return null;
   for (const key of await caches.keys()) {
     const cache = await caches.open(key);
     if (await cache.match(request)) {
