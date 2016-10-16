@@ -150,10 +150,6 @@
         event.preventDefault();
       });
 
-      //Set next button
-      console.log("Next document is: "+spine[1].href);
-      next.href = new URL(spine[1].href, url).href;
-
     });
   };
 
