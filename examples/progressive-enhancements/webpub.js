@@ -3,7 +3,6 @@ This is the 1.0 version of the Web Publication JS prototype.
 
 It now supports:
 - caching resources necessary for reading the publication offline
-- generating a Web App Manifest (if you activate the sw-toolbox variant)
 - adding navigation to the previous and/or next resource in the publication
 
 This script checks if the manifest file is stored in the cache, and only precaches resources if it isn't.
@@ -23,9 +22,6 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
   if (navigator.serviceWorker) {
     //Basic SW
     navigator.serviceWorker.register('/webpub-manifest/sw.js');
-
-    //SW based on sw-toolbox that also generates the Web App Manifest
-    //navigator.serviceWorker.register('sw-toolobox-cache.js');
   
     navigator.serviceWorker.ready.then(function() {
       console.log('SW ready');
@@ -103,7 +99,6 @@ https://github.com/HadrienGardeur/webpub-manifest/wiki/Web-Publication-JS
     return manifestJSON.then(function(manifest) {
       return manifest.spine.map(function(el) { return el.href});}).then(function(data) {
         data.push(url);
-        data.push("../../webpub.js");
         return cacheURL(data, url);})
   };
 
