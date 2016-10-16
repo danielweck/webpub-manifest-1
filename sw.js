@@ -4,10 +4,7 @@ var urlsToCache = [
   '/webpub-manifest/examples/viewer/sandbox.html',
   '/webpub-manifest/examples/viewer/viewer.js',
   '/webpub-manifest/examples/comics-viewer/index.html',
-  '/webpub-manifest/examples/comics-viewer/viewer.js',
-  '/webpub-manifest/fetch.js',
-  '/webpub-manifest/urlsearchparams.js',
-  '/webpub-manifest/webpub.js'
+  '/webpub-manifest/examples/comics-viewer/viewer.js'
 ];
 
 self.addEventListener('install', event => {
