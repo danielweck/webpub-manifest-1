@@ -25,15 +25,35 @@ self.addEventListener('activate', event => {
 });
 
 /*
-For a publication, it seems better to do network then cache than the opposite.
-Could be problematic when the network is very slow, but has the benefit of being fresh.
+Cache then network. 
+If the response is found in the cache after a network response, the cache is updated
 */
 
 self.addEventListener('fetch', event => {
   event.respondWith(
-    fetch(event.request).catch(function() {
-      return caches.match(event.request);
+    caches.match(event.request).then(function(response) {
+      var fetchPromise = fetch(event.request).then(function(networkResponse) {
+        var cacheName = whoHasRequest(networkResponse.clone());
+        if(cacheName) {
+          caches.open(cacheName).then(function(cache){
+            cache.put(event.request, networkResponse.clone());
+          })
+        }
+        return networkResponse;
+      })
+      return response || fetchPromise;
     })
   );
-
 });
+
+async function whoHasRequest(request) {
+  const resp = await caches.match(request);
+  if (!resp) return null;
+  for (const key of await caches.keys()) {
+    const cache = await caches.open(key);
+    if (await cache.match(request)) {
+      return key;
+    }
+  }
+  return null;
+}
