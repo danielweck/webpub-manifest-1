@@ -29,7 +29,7 @@ self.addEventListener('activate', event => {
 //It's a good balance between freshness and speed.
 self.addEventListener('fetch', event => {
   event.respondWith(fromNetwork(event.request, 400).catch(function () {
-    return fromCache(event.request);
+    return caches.match(request);
   }));
 
 });
@@ -46,14 +46,5 @@ function fromNetwork(request, timeout) {
       fulfill(response);
     // Reject also if network fetch rejects.
     }, reject);
-  });
-}
-
-// Open the cache where the assets were stored and search for the requested
-// resource. Notice that in case of no matching, the promise still resolves
-// but it does with `undefined` as value.
-function fromCache(request) {
-  return caches.match(request).then(function (matching) {
-    return matching || Promise.reject('no-match');
   });
 }
