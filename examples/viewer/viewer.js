@@ -23,13 +23,13 @@
 
   if (current_url_params.has("document")) {
     console.log("Found reference to a document in params")
-    var document_url = current_url_params.get("href");
+    var document_url = current_url_params.get("document");
   } else {
     var document_url = undefined;
   };
 
   if (navigator.serviceWorker) verifyAndCacheManifest(manifest_url).catch(function() {});
-  initializeNavigation(manifest_url).catch(function() {});
+  initializeNavigation(manifest_url, document_url).catch(function() {});
   
   var iframe = document.querySelector("iframe");
   var next = document.querySelector("a[rel=next]");
@@ -47,7 +47,7 @@
     if (next.hasAttribute("href")) {
       iframe.src = next.href;
       iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
-      //history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+next.href);
+      history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+next.href);
     };
     event.preventDefault();
   });
@@ -56,7 +56,7 @@
     if ( previous.hasAttribute("href")) {
       iframe.src = previous.href;
       iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
-      //history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+previous.href);
+      history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+previous.href);
     };
     event.preventDefault();
   });
@@ -107,7 +107,7 @@
       return manifest.resources.map(function(el) { return el.href});}).then(function(data) {return cacheURL(data, url);})
   };
 
-  function initializeNavigation(url) {
+  function initializeNavigation(url, document_url) {
     return getManifest(url).then(function(json) { 
       var title = json.metadata.title;
       console.log("Title of the publication: "+title);
@@ -118,9 +118,14 @@
       //Find iframe and set start document
       var iframe = document.querySelector("iframe");
       var start_url = new URL(spine[0].href, url).href;
-      console.log("Set iframe to: "+start_url)
-      iframe.src = start_url;
-      
+      if (document_url) {
+        console.log("Set iframe to: "+document_url)
+        iframe.src = document_url;
+      } else {
+        console.log("Set iframe to: "+start_url)
+        iframe.src = start_url;
+      }
+
       var start = document.querySelector("a[rel=start]");
       var next = document.querySelector("a[rel=next]");
       var previous = document.querySelector("a[rel=prev]");
@@ -133,7 +138,7 @@
         iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
         next.href = new URL(spine[1].href, url).href;
         previous.removeAttribute("href");
-        //history.pushState(null, null, "./?manifest=true&href="+url+"&document="+start.href);
+        history.pushState(null, null, "./?manifest=true&href="+url+"&document="+start.href);
         event.preventDefault();
       });
 
