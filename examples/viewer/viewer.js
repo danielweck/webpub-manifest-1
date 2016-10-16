@@ -41,13 +41,23 @@
 
   iframe.addEventListener("load", function(event) {
     updateNavigation(manifest_url).catch(function() {});
+    try {
+      try {
+        history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+iframe.contentDocument.location.href);
+      }
+      catch(err) {
+        history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+iframe.src);
+      }
+    }
+    catch(err) {
+      console.log("Could not update history");
+    }
   });
 
   next.addEventListener("click", function(event) {
     if (next.hasAttribute("href")) {
       iframe.src = next.href;
       iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
-      history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+next.href);
     };
     event.preventDefault();
   });
@@ -56,7 +66,6 @@
     if ( previous.hasAttribute("href")) {
       iframe.src = previous.href;
       iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
-      history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+previous.href);
     };
     event.preventDefault();
   });
@@ -138,7 +147,6 @@
         iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
         next.href = new URL(spine[1].href, url).href;
         previous.removeAttribute("href");
-        history.pushState(null, null, "./?manifest=true&href="+url+"&document="+start.href);
         event.preventDefault();
       });
 
