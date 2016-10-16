@@ -7,15 +7,16 @@ var urlsToCache = [
   '/webpub-manifest/examples/comics-viewer/',
   '/webpub-manifest/examples/comics-viewer/index.html',
   '/webpub-manifest/examples/comics-viewer/viewer.js',
-  '/webpub-manifest/webpub.js'
+  '/webpub-manifest/examples/progressive-enhancements/webpub.js',
+  '/webpub-manifest/polyfills/fetch.js',
+  '/webpub-manifest/polyfills/urlsearchparams.js'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        return cache.addAll(urlsToCache);
-      })
+    caches.open(CACHE_NAME).then(function(cache) {
+      cache.addAll(urlsToCache);
+    })
   );
   self.skipWaiting();
 });
