@@ -39,12 +39,15 @@
   iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
   iframe.style.marginTop = navigation.scrollHeight + 'px';
 
+  iframe.addEventListener("load", function(event) {
+    updateNavigation(manifest_url).catch(function() {});
+  });
+
   next.addEventListener("click", function(event) {
     if (next.hasAttribute("href")) {
       iframe.src = next.href;
       iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
       //history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+next.href);
-      updateNavigation(manifest_url).catch(function() {});
     };
     event.preventDefault();
   });
@@ -54,7 +57,6 @@
       iframe.src = previous.href;
       iframe.style.height = window.innerHeight - navigation.scrollHeight - 5 + 'px';
       //history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+previous.href);
-      updateNavigation(manifest_url).catch(function() {});
     };
     event.preventDefault();
   });
@@ -149,9 +151,18 @@
       var start = document.querySelector("a[rel=start]");
       var next = document.querySelector("a[rel=next]");
       
+      var current_location = iframe.src;
+
+      try {
+        current_location = iframe.contentDocument.location.href;
+      }
+      catch(err) {
+        console.log("Could not get iframe location, fallback to src");
+      }
+
       var current_index = spine.findIndex(function(element) {
         var element_url = new URL(element.href, url);
-        return element_url.href == iframe.src
+        return element_url.href == current_location
       })
       
       if (current_index >= 0) {
@@ -169,6 +180,9 @@
         } else {
           next.removeAttribute("href");
         };
+      } else {
+        previous.removeAttribute("href");
+        next.removeAttribute("href");
       }
     });
   };
