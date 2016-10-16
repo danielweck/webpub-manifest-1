@@ -126,8 +126,9 @@
       document.querySelector("title").textContent = title;
 
       //Search for TOC and add it
-      var all_resources = json.spine;
-      if (json.resources) all_resources.concat(json.resources);
+      
+      if (json.resources) { var all_resources = json.spine.concat(json.resources); }
+      else { var all_resources = json.spine; }
       all_resources.forEach(function(link) {
         if (link.rel) {
           if (link.rel=="contents") {
