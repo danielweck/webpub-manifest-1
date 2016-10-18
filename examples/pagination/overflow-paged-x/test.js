@@ -43,8 +43,8 @@
     }
   }));
 
-  //window.addEventListener("scroll", (function(e) {        
-  //  document.body.scrollLeft = page*(window.outerWidth);
-  //}));
+  window.addEventListener("scroll", (function(e) {        
+    document.body.scrollLeft = page*(window.outerWidth);
+  }));
 
 }());
