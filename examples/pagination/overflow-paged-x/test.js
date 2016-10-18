@@ -10,9 +10,9 @@
     document.body.scrollLeft = page*(window.outerWidth);
   });
 
-  mc.on("swiperight", function(event) {
-    if (page>0) page = page+1;
-    document.body.scrollLeft = page*(window.outerWidth);
-  });
+  //mc.on("swiperight", function(event) {
+  //  if (page>0) page = page+1;
+  //  document.body.scrollLeft = page*(window.outerWidth);
+  //});
 
 }());
