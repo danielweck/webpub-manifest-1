@@ -1,4 +1,4 @@
-/* Handle basic navigation using swipes */
+/* Handle basic navigation using taps */
 
 (function() {
 
