@@ -20,7 +20,7 @@
   window.addEventListener("click", (function(e) {        
     var clickX = e.clientX;
     console.log("Click detected at: "+clickX);
-    if (clickX > (window.outerWidth/2)) {
+    if (clickX > (window.innerWidth/2)) {
       page = page+1;
       document.body.scrollLeft = page*(window.outerWidth);
     } else {
@@ -29,8 +29,8 @@
     }
   }));
 
-  //window.addEventListener("scroll", (function(e) {        
-  //  document.body.scrollLeft = page*(window.outerWidth);
-  //}));
+  window.addEventListener("scroll", (function(e) {        
+    document.body.scrollLeft = page*(window.outerWidth);
+  }));
 
 }());
