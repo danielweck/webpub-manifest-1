@@ -227,12 +227,12 @@
     var prevLink = document.createElement("link");
     prevLink.href = next.href
     prevLink.rel = "prev";
-    iframe.contentDocument.querySelector("head").appendChild(paginateCSS);
+    iframe.contentDocument.querySelector("head").appendChild(prevLink);
 
     var nextLink = document.createElement("link");
     nextLink.href = next.href
     nextLink.rel = "next";
-    iframe.contentDocument.querySelector("head").appendChild(paginateCSS);
+    iframe.contentDocument.querySelector("head").appendChild(nextLink);
   };
 
 }());
