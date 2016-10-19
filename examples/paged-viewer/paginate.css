@@ -8,3 +8,7 @@ body {
 nav.publication {
   display: none;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
