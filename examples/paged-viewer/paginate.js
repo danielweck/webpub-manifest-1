@@ -4,7 +4,10 @@
 
   var page = 0;
   var hash = location.hash;
-  if (hash=="#last") document.body.scrollLeft = document.body.scrollWidth-window.innerWidth;
+  if (hash=="#last") {
+    document.body.scrollLeft = document.body.scrollWidth-window.innerWidth;
+    page = (document.body.scrollWidth/window.innerWidth)-1;
+  }
   
   window.addEventListener("click", (function(e) {        
     var clickX = e.pageX;
