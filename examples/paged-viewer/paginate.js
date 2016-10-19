@@ -21,7 +21,7 @@
       } else {
         page = page+1;
       }
-    } else if (clickX > (window.innerWidth*page)+(window.innerWidth/3)) {
+    } else if (clickX < (window.innerWidth*page)+(window.innerWidth/3)) {
       if (document.body.scrollLeft == 0) {
         var previous = document.querySelector("link[rel=prev]");
         if (previous.href) location.href = previous.href+"#last";
