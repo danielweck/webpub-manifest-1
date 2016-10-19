@@ -6,5 +6,5 @@ body {
 }
 
 nav.publication {
-  display: hidden;
+  display: none;
 }
