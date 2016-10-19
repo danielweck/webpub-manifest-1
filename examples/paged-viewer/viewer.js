@@ -37,7 +37,7 @@
   if (navigator.serviceWorker) verifyAndCacheManifest(manifest_url).catch(function() {});
   initializeNavigation(manifest_url, document_url).catch(function() {});
 
-  iframe.style.height = window.innerHeight - 30 + 'px';
+  iframe.style.height = window.innerHeight - 35 + 'px';
   iframe.style.marginTop = 20 + 'px';
 
   iframe.addEventListener("load", function(event) {
