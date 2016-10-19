@@ -17,7 +17,7 @@
       console.log("Current position: " + document.body.scrollLeft);
       if (document.body.scrollLeft+window.innerWidth == document.body.scrollWidth) {
         var next = document.querySelector("link[rel=next]");
-        if (next.href) location.href = next.href;
+        if (next.href && next.href!="") location.href = next.href;
       } else {
         page = page+1;
       }
