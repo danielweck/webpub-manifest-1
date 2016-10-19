@@ -41,19 +41,20 @@
   iframe.style.marginTop = navigation.scrollHeight + 'px';
 
   iframe.addEventListener("load", function(event) {
-    updateNavigation(manifest_url).catch(function() {});
-    try {
+    updateNavigation(manifest_url).then(function(){
       try {
-        history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+iframe.contentDocument.location.href);
-        injectInIframe();
+        try {
+          history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+iframe.contentDocument.location.href);
+          injectInIframe();
+        }
+        catch(err) {
+          history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+iframe.src);
+        }
       }
-      catch(err) {
-        history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+iframe.src);
+        catch(err) {
+        console.log("Could not update history");
       }
-    }
-    catch(err) {
-      console.log("Could not update history");
-    }
+    }).catch(function() {});
   });
 
   next.addEventListener("click", function(event) {
