@@ -11,7 +11,7 @@
     if (clickX > (window.innerWidth*page)+(window.innerWidth/2)) {
       console.log("Current position: " + document.body.scrollLeft);
       if (document.body.scrollLeft+window.innerWidth == document.body.scrollWidth) {
-        var next = document.querySelector("a[rel=next]");
+        var next = document.querySelector("link[rel=next]");
         if (next.href) location.href = next.href;
       } else {
         page = page+1;
