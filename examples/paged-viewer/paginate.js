@@ -13,7 +13,7 @@
     var clickX = e.pageX;
     console.log("Click detected at: "+clickX);
     //console.log((window.innerWidth*page)+(window.innerWidth/2));
-    if (clickX > (window.innerWidth*page)+(window.innerWidth/2)) {
+    if (clickX > (window.innerWidth*page)+(window.innerWidth/3)) {
       console.log("Current position: " + document.body.scrollLeft);
       if (document.body.scrollLeft+window.innerWidth == document.body.scrollWidth) {
         var next = document.querySelector("link[rel=next]");
@@ -21,7 +21,7 @@
       } else {
         page = page+1;
       }
-    } else {
+    } else if (clickX > (window.innerWidth*page)+((window.innerWidth/3)*2)) {
       if (document.body.scrollLeft == 0) {
         var previous = document.querySelector("link[rel=prev]");
         if (previous.href) location.href = previous.href+"#last";
