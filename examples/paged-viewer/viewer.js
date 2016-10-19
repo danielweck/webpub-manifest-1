@@ -45,6 +45,7 @@
     try {
       try {
         history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+iframe.contentDocument.location.href);
+        injectInIframe();
       }
       catch(err) {
         history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+iframe.src);
@@ -211,6 +212,27 @@
         next.removeAttribute("href");
       }
     });
+  };
+
+  function injectInIframe() {
+    var paginateCSS = document.createElement("link");
+    paginateCSS.href = new URL("paginate.css", location.href).href;
+    paginateCSS.rel = "stylesheet";
+    iframe.contentDocument.querySelector("head").appendChild(paginateCSS);
+
+    var paginateJS = document.createElement("script");
+    paginateJS.src = new URL("paginate.js", location.href).href;
+    iframe.contentDocument.querySelector("body").appendChild(paginateJS);
+
+    var prevLink = document.createElement("link");
+    prevLink.href = next.href
+    prevLink.rel = "prev";
+    iframe.contentDocument.querySelector("head").appendChild(paginateCSS);
+
+    var nextLink = document.createElement("link");
+    nextLink.href = next.href
+    nextLink.rel = "next";
+    iframe.contentDocument.querySelector("head").appendChild(paginateCSS);
   };
 
 }());
