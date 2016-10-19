@@ -28,8 +28,8 @@
       } else {
         if (page>0) page = page-1;
       }
-      else {parent.document.querySelector("nav").style.display="";}
     }
+    else {parent.document.querySelector("nav").style.display="";}
     document.body.scrollLeft = page*(window.innerWidth);
   }));
 
