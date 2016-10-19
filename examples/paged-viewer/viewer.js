@@ -226,7 +226,7 @@
     iframe.contentDocument.querySelector("body").appendChild(paginateJS);
 
     var prevLink = document.createElement("link");
-    prevLink.href = next.href
+    prevLink.href = previous.href
     prevLink.rel = "prev";
     iframe.contentDocument.querySelector("head").appendChild(prevLink);
 

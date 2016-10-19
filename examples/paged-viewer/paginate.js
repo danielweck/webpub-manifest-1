@@ -12,7 +12,7 @@
       console.log("Current position: " + document.body.scrollLeft);
       if (document.body.scrollLeft+window.innerWidth == document.body.scrollWidth) {
         var next = document.querySelector("link[rel=next]");
-        if (next) location.href = next.href;
+        if (next.href) location.href = next.href;
       } else {
         page = page+1;
         document.body.scrollLeft = page*(window.outerWidth);
@@ -20,7 +20,7 @@
     } else {
       if (document.body.scrollLeft == 0) {
         var previous = document.querySelector("link[rel=prev]");
-        if (previous) location.href = previous.href;
+        if (previous.href) location.href = previous.href;
       } else {
         if (page>0) page = page-1;
         document.body.scrollLeft = page*(window.outerWidth);
