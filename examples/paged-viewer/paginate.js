@@ -3,7 +3,9 @@
 (function() {
 
   var page = 0;
-
+  var hash = location.hash;
+  if (hash=="#last") document.body.scrollLeft = document.body.scrollWidth-window.innerWidth;
+  
   window.addEventListener("click", (function(e) {        
     var clickX = e.pageX;
     console.log("Click detected at: "+clickX);
@@ -15,21 +17,20 @@
         if (next.href) location.href = next.href;
       } else {
         page = page+1;
-        document.body.scrollLeft = page*(window.outerWidth);
       }
     } else {
       if (document.body.scrollLeft == 0) {
         var previous = document.querySelector("link[rel=prev]");
-        if (previous.href) location.href = previous.href;
+        if (previous.href) location.href = previous.href+"#last";
       } else {
         if (page>0) page = page-1;
-        document.body.scrollLeft = page*(window.outerWidth);
       }
     }
+    document.body.scrollLeft = page*(window.innerWidth);
   }));
 
   window.addEventListener("scroll", (function(e) {        
-    document.body.scrollLeft = page*(window.outerWidth);
+    document.body.scrollLeft = page*(window.innerWidth);
   }));
 
 }());
