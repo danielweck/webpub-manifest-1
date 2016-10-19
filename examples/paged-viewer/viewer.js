@@ -182,7 +182,7 @@
       var current_location = iframe.src;
 
       try {
-        current_location = iframe.contentDocument.location.href;
+        current_location = iframe.contentDocument.location.href.replace(iframe.contentDocument.location.hash, "");
       }
       catch(err) {
         console.log("Could not get iframe location, fallback to src");
