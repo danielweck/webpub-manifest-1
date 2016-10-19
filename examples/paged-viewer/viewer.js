@@ -40,9 +40,9 @@
   iframe.style.height = window.innerHeight - 35 + 'px';
   iframe.style.marginTop = 20 + 'px';
 
-  window.addEventListener("orientationchange", function() {
+  window.onresize = function(){
     iframe.style.height = window.innerHeight - 35 + 'px';
-  });
+  };
 
   iframe.addEventListener("load", function(event) {
     updateNavigation(manifest_url).then(function(){
