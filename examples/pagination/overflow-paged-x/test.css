@@ -256,7 +256,9 @@ width: 100%;
 
 body {
   margin: 2em;
+  overflow: paged-x;
   overflow: -webkit-paged-x;
+  overflow: -o-paged-x;
 }
 
 .right {

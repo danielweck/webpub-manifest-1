@@ -45,6 +45,10 @@
     try {
       try {
         history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+iframe.contentDocument.location.href);
+        var paginateCSS = document.createElement("link");
+        paginateCSS.href = new URL("paginate.css", location.href).href;
+        paginateCSS.rel = "stylesheet";
+        iframe.contentDocument.querySelector("head").appendChild(paginateCSS);
       }
       catch(err) {
         history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+iframe.src);
@@ -188,7 +192,7 @@
 
       var current_index = spine.findIndex(function(element) {
         var element_url = new URL(element.href, url);
-        return element_url.href == current_location
+        return element_url.href == current_location;
       })
       
       if (current_index >= 0) {
