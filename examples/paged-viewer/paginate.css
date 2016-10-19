@@ -5,9 +5,9 @@ body {
   overflow: -o-paged-x;
 }
 
-nav.publication {
+/*nav.publication {
   display: none;
-}
+}*/
 
 ::-webkit-scrollbar {
     display: none;
