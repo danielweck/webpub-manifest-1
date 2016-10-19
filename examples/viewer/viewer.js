@@ -49,6 +49,10 @@
         paginateCSS.href = new URL("paginate.css", location.href).href;
         paginateCSS.rel = "stylesheet";
         iframe.contentDocument.querySelector("head").appendChild(paginateCSS);
+
+        var paginateJS = document.createElement("script");
+        paginateJS.src = new URL("paginate.js", location.href).href;
+        iframe.contentDocument.querySelector("body").appendChild(paginateJS);
       }
       catch(err) {
         history.pushState(null, null, "./?manifest=true&href="+manifest_url+"&document="+iframe.src);
