@@ -221,7 +221,7 @@
 
   function injectInIframe() {
     var paginateCSS = document.createElement("link");
-    paginateCSS.href = new URL("paginate.css", location.href).href;
+    paginateCSS.href = new URL("columns.css", location.href).href;
     paginateCSS.rel = "stylesheet";
     iframe.contentDocument.querySelector("head").appendChild(paginateCSS);
 
