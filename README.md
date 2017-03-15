@@ -1,10 +1,10 @@
-#Web Publication Manifest
+# Web Publication Manifest
 
 This space is now dedicated to examples and experiments around the [Web Publication Manifest](https://github.com/readium/webpub-manifest).
 
 Work on the specification itself is now handled by the [Readium Foundation](https://github.com/readium/) based on initial ideas for EPUB BFF (Browser Friendly Format) as part of the [Readium-2 project](https://github.com/readium/readium-2).
 
-##Live Demo
+## Live Demo
 
 A live demo of a Web Publication is available at: https://hadriengardeur.github.io/webpub-manifest/examples/MobyDick/index.html
 
@@ -15,7 +15,7 @@ Additional demos are also available:
 - Moby-Dick with progressive enhancements can also be tested at: https://hadriengardeur.github.io/webpub-manifest/examples/progressive-enhancements/index.html
 - a simple Web App for reading Web Publications is available at: https://hadriengardeur.github.io/webpub-manifest/examples/viewer/
 
-##Related Projects
+## Related Projects
 
 A number of related Github projects implement the Web Publication Manifest such as:
 
