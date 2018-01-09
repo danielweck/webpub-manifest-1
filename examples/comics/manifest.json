@@ -1,8 +1,8 @@
 {
-  "@context": "http://idpf.org/epub.jsonld",
+  "@context": "http://readium.org/webpub/default.jsonld",
 
   "metadata": {
-    "@type": ["http://schema.org/GraphicNovel", "http://schema.org/EBook"],
+    "@type": ["http://schema.org/GraphicNovel", "http://schema.org/Book"],
     "title": "La Page Blanche",
     "sort_as": "Page Blanche, La",
     "author": {
