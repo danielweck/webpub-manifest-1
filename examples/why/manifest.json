@@ -25,12 +25,151 @@
   ],
 
   "toc": [
-    {"href": "https://poignant.guide/book/chapter-1.html", "type": "text/html", "title": "1. About this Book"},
-    {"href": "https://poignant.guide/book/chapter-2.html", "type": "text/html", "title": "2. Kon’nichi wa, Ruby"},
-    {"href": "https://poignant.guide/book/chapter-3.html", "type": "text/html", "title": "3. A Quick (and Hopefully Painless) Ride Through Ruby (with Cartoon Foxes)"},
-    {"href": "https://poignant.guide/book/chapter-4.html", "type": "text/html", "title": "4. Floating Little Leaves of Code"}, 
-    {"href": "https://poignant.guide/book/chapter-5.html", "type": "text/html", "title": "5. Them What Make the Rules and Them What Live the Dream"}, 
-    {"href": "https://poignant.guide/book/chapter-6.html", "type": "text/html", "title": "6. Downtown"}, 
-    {"href": "https://poignant.guide/book/chapter-7.html", "type": "text/html", "title": "7. When You Wish Upon a Beard"}
+    {
+      "href": "https://poignant.guide/book/chapter-1.html", 
+      "title": "1. About this Book"
+    },
+    {
+      "href": "https://poignant.guide/book/chapter-2.html", 
+      "title": "2. Kon’nichi wa, Ruby",
+      "children": [
+        {
+          "href": "https://poignant.guide/book/chapter-2.html#section1",
+          "title": "a. Opening This Book"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-2.html#section2",
+          "title": "b. The Dog Story"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-2.html#section3",
+          "title": "c. The Red Sun Rises"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-2.html#section4",
+          "title": "d. How Books Start"
+        }
+      ]
+    },
+    {
+      "href": "https://poignant.guide/book/chapter-3.html", 
+      "title": "3. A Quick (and Hopefully Painless) Ride Through Ruby (with Cartoon Foxes)",
+      "children": [
+        {
+          "href": "https://poignant.guide/book/chapter-3.html#section1",
+          "title": "a. Language and I MEAN Language"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-3.html#section2",
+          "title": "b. The Parts of Speech"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-3.html#section3",
+          "title": "c. If I Haven't Treated You Like a Child Enough Already"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-3.html#section4",
+          "title": "d. An Example to Help You Grow Up"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-3.html#section5",
+          "title": "e. And So, The Quick Trip Came To An Eased, Cushioned Halt"
+        }
+      ]
+    },
+    {
+      "href": "https://poignant.guide/book/chapter-4.html", 
+      "title": "4. Floating Little Leaves of Code",
+      "children": [
+        {
+          "href": "https://poignant.guide/book/chapter-4.html#section1",
+          "title": "a. The Leaf as a Status Symbol in Ambrose"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-4.html#section2",
+          "title": "b. Small and Nearly Worthless"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-4.html#section3",
+          "title": "c. Chaining Delusions Together"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-4.html#section4",
+          "title": "d. The Miracle of Blocks"
+        }
+      ]
+    },
+    {
+      "href": "https://poignant.guide/book/chapter-5.html", 
+      "title": "5. Them What Make the Rules and Them What Live the Dream",
+      "children": [
+        {
+          "href": "https://poignant.guide/book/chapter-5.html#section1",
+          "title": "a. This One's For the Disenfranchised"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-5.html#section2",
+          "title": "b. A Castle Has Its Computers"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-5.html#section3",
+          "title": "c. The Continued Story of My Daughter's Organ Instructor"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-5.html#section4",
+          "title": "d. The Goat Wants to Watch a Whole Film"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-5.html#section5",
+          "title": "e. The Theft of the Lottery Captain"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-5.html#section6",
+          "title": "f. Them What Make the Rules"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-5.html#section7",
+          "title": "g. Them What Live the Dream"
+        }
+      ]
+    },
+    {
+      "href": "https://poignant.guide/book/chapter-6.html", 
+      "title": "6. Downtown",
+      "children": [
+        {
+          "href": "https://poignant.guide/book/chapter-6.html#section1",
+          "title": "a. If I Were Looking For a Vehicle"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-6.html#section2",
+          "title": "b. Meanwhile, The Porcupine Stops To Fill-Up"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-6.html#section3",
+          "title": "c. A Sponsored Dragon-Slaying"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-6.html#section4",
+          "title": "d. So, Let's Be Clear: The Porcupine Is Now To The Sea"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-6.html#section5",
+          "title": "e. Walking, Walking, Walking, Walking and So Forth"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-6.html#section6",
+          "title": "f. Just Stopping To Assure You That the Porcupine Hasn't Budged"
+        },
+        {
+          "href": "https://poignant.guide/book/chapter-6.html#section7",
+          "title": "g. I'm Out"
+        }
+      ]
+    },
+    {
+      "href": "https://poignant.guide/book/chapter-7.html", 
+      "title": "7. When You Wish Upon a Beard"
+    }
   ]
 }
