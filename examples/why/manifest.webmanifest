@@ -2,6 +2,7 @@
   "name": "Why’s (Poignant) Guide to Ruby",
   "short_name": "Ruby Guide",
   "start_url": "https://poignant.guide/",
+  "display": "publication",
   "reading_order": [
     {"href": "https://poignant.guide/book/chapter-1.html", "type": "text/html", "title": "1. About this Book"},
     {"href": "https://poignant.guide/book/chapter-2.html", "type": "text/html", "title": "2. Kon’nichi wa, Ruby"},
