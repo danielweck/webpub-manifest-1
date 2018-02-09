@@ -3,8 +3,10 @@
 
   "metadata": {
     "@type": "http://schema.org/Book",
+    "identifier": "https://poignant.guide/",
     "title": "Why’s (Poignant) Guide to Ruby",
-    "language": "en"
+    "language": "en",
+    "author": "why the lucky stiff"
   },
 
   "links": [
