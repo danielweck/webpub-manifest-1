@@ -7,7 +7,7 @@
     "author": "Herman Melville",
     "identifier": "urn:isbn:9780000000001",
     "language": "en",
-    "modified": "2015-09-29T17:00:00Z"
+    "modified": "2018-02-10T17:00:00Z"
   },
 
   "links": [
@@ -16,7 +16,7 @@
   ],
 
   "spine": [
-    {"href": "index.html", "type": "text/html", "title": "Title Page"},
+    {"href": "html/title.html", "type": "text/html", "title": "Title Page"},
     {"href": "html/copyright.html", "type": "text/html", "title": "Copyright"},
     {"href": "html/introduction.html", "type": "text/html", "title": "Etymology"},
     {"href": "html/epigraph.html", "type": "text/html", "title": "Extracts"}, 

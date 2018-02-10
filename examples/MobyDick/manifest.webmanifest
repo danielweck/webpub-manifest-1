@@ -1,7 +1,7 @@
 {
   "name": "Moby-Dick; or, The Whale",
   "short_name": "Moby-Dick",
-  "start_url": "index.html",
+  "start_url": "html/title.html",
   "icons": [
     {
       "src": "icon.png",
@@ -25,6 +25,17 @@
     }
   ],
   "background_color": "#4976be",
-  "display": "standalone",
-  "publication": "manifest.json"
+  "display": "publication",
+  "reading_order": [
+    {"href": "html/title.html", "type": "text/html", "title": "Title Page"},
+    {"href": "html/copyright.html", "type": "text/html", "title": "Copyright"},
+    {"href": "html/introduction.html", "type": "text/html", "title": "Etymology"},
+    {"href": "html/epigraph.html", "type": "text/html", "title": "Extracts"}, 
+    {"href": "html/c001.html", "type": "text/html", "title": "Chapter 1 - Loomings"}, 
+    {"href": "html/c002.html", "type": "text/html", "title": "Chapter 2 - The Carpet-Bad"}, 
+    {"href": "html/c003.html", "type": "text/html", "title": "Chapter 3 - The Spouter-Inn"}, 
+    {"href": "html/c004.html", "type": "text/html", "title": "Chapter 4 - The Counterpane"}, 
+    {"href": "html/c005.html", "type": "text/html", "title": "Chapter 5 - Breakfast"}, 
+    {"href": "html/c006.html", "type": "text/html", "title": "Chapter 6 - The Street"}
+  ]
 }

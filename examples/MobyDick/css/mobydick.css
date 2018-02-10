@@ -273,3 +273,8 @@ nav {
   padding-bottom: 2em;
 }
 
+@media all and (display-mode: publication) {
+  nav.publication {
+    display: none;
+  }
+}
