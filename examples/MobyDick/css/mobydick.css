@@ -273,8 +273,8 @@ nav {
   padding-bottom: 2em;
 }
 
-@media all and (display-mode: publication) {
-  nav.publication {
-    display: none;
+@media all and (display-mode: standalone) {
+  .display-mode-test {
+    display: block;
   }
 }

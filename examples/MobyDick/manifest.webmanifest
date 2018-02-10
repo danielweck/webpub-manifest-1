@@ -25,7 +25,7 @@
     }
   ],
   "background_color": "#4976be",
-  "display": "publication",
+  "display": "standalone",
   "reading_order": [
     {"href": "html/title.html", "type": "text/html", "title": "Title Page"},
     {"href": "html/copyright.html", "type": "text/html", "title": "Copyright"},
